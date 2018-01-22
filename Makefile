@@ -6,12 +6,12 @@
 #    By: lkaser <lkaser@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/20 13:52:57 by lkaser            #+#    #+#              #
-#    Updated: 2018/01/22 15:07:32 by lkaser           ###   ########.fr        #
+#    Updated: 2018/01/22 15:11:33 by lkaser           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = RTv1
-LIST = fdf fdf_line buffer hook matrix vector
+LIST = RTv1 buffer hook matrix vector
 
 SRC = $(addsuffix .c, $(LIST))
 OBJ = $(addsuffix .o, $(LIST))
