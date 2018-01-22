@@ -6,11 +6,11 @@
 #    By: lkaser <lkaser@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/20 13:52:57 by lkaser            #+#    #+#              #
-#    Updated: 2018/01/22 13:51:26 by lkaser           ###   ########.fr        #
+#    Updated: 2018/01/22 15:07:32 by lkaser           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = rtv1
+NAME = RTv1
 LIST = fdf fdf_line buffer hook matrix vector
 
 SRC = $(addsuffix .c, $(LIST))
