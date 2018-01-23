@@ -6,7 +6,7 @@
 /*   By: lkaser <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/18 11:03:56 by lkaser            #+#    #+#             */
-/*   Updated: 2018/01/22 16:08:39 by dhill            ###   ########.fr       */
+/*   Updated: 2018/01/22 20:58:50 by dhill            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,5 @@ typedef	struct		s_light
 	unsigned		color;
 	double			intensity;
 }
-
 
 #endif
