@@ -6,7 +6,7 @@
 /*   By: lkaser <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/18 11:03:56 by lkaser            #+#    #+#             */
-/*   Updated: 2018/01/22 14:49:12 by lkaser           ###   ########.fr       */
+/*   Updated: 2018/01/23 17:51:50 by lkaser           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,6 @@
 # include "mlx.h"
 # include <time.h>
 
-# define WIN_X 1024
-# define WIN_Y 1024
-# define CANVAS_X 2
-# define CANVAS_Y 2
 # define WINDOW_NAME "RTv1"
 # define RGB(r,g,b) ((b) + ((g) << 8) + ((r) << 16))
 # define V2(x,y) ((t_vec2){x,y})
@@ -77,17 +73,18 @@ void				buffer_point(t_buff *b,
 						unsigned x, unsigned y, unsigned color);
 void				buffer_blit(t_buff *b, unsigned x, unsigned y);
 void				buffer_del(t_buff *b);
-
-t_ctx				*initalize();
 int					blit_all(t_ctx *c);
+t_ctx				*initalize();
 
 t_mat				*mat_new(int order);
 void				mat_del(t_mat *m);
 t_mat				*mat_x_mat(const t_mat *a, const t_mat *b);
 void				mat_inverse(const t_mat *m, t_mat *r);
+
 t_vec3				vec3_x_mat(t_vec3 v, t_mat *m);
 double				vec3_length(t_vec3 *v);
 t_vec3				vec3_normalize(t_vec3 v);
 t_vec3				vec3_cross_product(t_vec3 a, t_vec3 b);
 t_vec3				vec3_minus_vec3(t_vec3 a, t_vec3 b);
+void				look_at(t_vec3 from, t_vec3 to, t_mat *cam);
 #endif

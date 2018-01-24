@@ -1,45 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.h                                              :+:      :+:    :+:   */
+/*   RTv1.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lkaser <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/18 11:03:56 by lkaser            #+#    #+#             */
-/*   Updated: 2018/01/22 16:08:39 by dhill            ###   ########.fr       */
+/*   Updated: 2018/01/23 20:51:35 by lkaser           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
 
-typedef	enum		e_type
+# define WIN_X 1920
+# define WIN_Y 1080
+# define FOV 30
+# include "wrapper.h"
+
+typedef	enum	e_type
 {
 	t_plane = 1,
 	t_sphere,
 	t_cylinder,
 	t_cone
-}					t_type;
+}				t_type;
 
-typedef struct		s_map
+typedef	struct	s_object
 {
-	t_ctx			*c;
-	int				width;
-	t_list			*data;
-}					t_map;
+	t_vec3		position;
+	t_vec3		rotation;
+	t_type		type;
+	double		radius;
+	unsigned	color;
+}				t_obj;
 
-typedef	struct		s_object
+typedef	struct	s_light
 {
-	t_vec3			position;
-	double			radius;
-	unsigned		color;
-}					t_obj;
-
-typedef	struct		s_light
-{
-	unsigned		color;
-	double			intensity;
-}
-
+	unsigned	color;
+	double		intensity;
+}				t_light;
 
 #endif
