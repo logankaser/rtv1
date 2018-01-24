@@ -1,40 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse.c                                            :+:      :+:    :+:   */
+/*   parse_type.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dhill <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/23 15:10:43 by dhill             #+#    #+#             */
-/*   Updated: 2018/01/23 17:00:35 by dhill            ###   ########.fr       */
+/*   Created: 2018/01/23 22:14:37 by dhill             #+#    #+#             */
+/*   Updated: 2018/01/24 00:01:20 by dhill            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "RTv1.h"
+#include "rtv1.h"
 
-void	camera(char **split, list)
+t_vec3	get_position(char *p1, char *p2, char *p3)
 {
-	
+	//will always be first 3 doubles;
 }
 
-void	sphere(char **split, list)
+t_vec3	get_rotation(char *r1, char *r2, char *r3)
 {
-	
+	//unsure of this, the direction maybe
 }
 
-void	cylinder(char **split, list)
+double	get_radius(char *radius)
 {
-	
+	//just a quick atof of whatever 'string' the radius is
 }
 
-void	plane(char **split, list)
+unsigned	get_color(char *color)
 {
-	
-}
-
-void	cone(char **split, list)
-{
-	
+	//change 0xFFFFFF str to an usnigned int
+	return (ft_htou(color));
 }
 
 void	parse(lisssst)
@@ -44,7 +40,7 @@ void	parse(lisssst)
 	char	**split;
 	char	*line;
 	int		i;
-	
+
 	i = 0;
 
 	(var->fd = open(str, O_RDONLY)) < 0 ? error("Opening file failed.") : 0;
