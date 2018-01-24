@@ -6,7 +6,7 @@
 /*   By: lkaser <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/18 11:03:56 by lkaser            #+#    #+#             */
-/*   Updated: 2018/01/23 17:51:50 by lkaser           ###   ########.fr       */
+/*   Updated: 2018/01/24 13:53:54 by lkaser           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,12 +48,7 @@ typedef struct		s_ctx
 {
 	void			*mlx;
 	void			*win;
-	t_mat			*view;
-	t_vec3			pos;
-	double			yaw;
-	double			pitch;
 	t_list			*buffs;
-	time_t			past_time;
 }					t_ctx;
 
 typedef struct		s_buff
@@ -68,13 +63,14 @@ typedef struct		s_buff
 	char			*data;
 }					t_buff;
 
+t_ctx				*context_new();
+
 t_buff				*buffer_new(t_ctx *c, unsigned x, unsigned y);
 void				buffer_point(t_buff *b,
 						unsigned x, unsigned y, unsigned color);
 void				buffer_blit(t_buff *b, unsigned x, unsigned y);
 void				buffer_del(t_buff *b);
 int					blit_all(t_ctx *c);
-t_ctx				*initalize();
 
 t_mat				*mat_new(int order);
 void				mat_del(t_mat *m);
