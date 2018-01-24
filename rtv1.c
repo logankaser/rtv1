@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   RTv1.c                                             :+:      :+:    :+:   */
+/*   rtv1.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lkaser <lkaser@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 16:13:37 by lkaser            #+#    #+#             */
-/*   Updated: 2018/01/23 20:57:09 by lkaser           ###   ########.fr       */
+/*   Updated: 2018/01/23 21:00:24 by lkaser           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #define ASSERT_FAIL ft_puterror("Exception!\n");exit(1)
 #include "wrapper.h"
-#include "RTv1.h"
+#include "rtv1.h"
 #include <fcntl.h>
 #include <math.h>
 

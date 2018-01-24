@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   hook.c                                             :+:      :+:    :+:   */
+/*   mlx.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lkaser <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/02 15:44:27 by lkaser            #+#    #+#             */
-/*   Updated: 2018/01/23 20:51:10 by lkaser           ###   ########.fr       */
+/*   Updated: 2018/01/23 21:00:31 by lkaser           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #define ASSERT_FAIL ft_puterror("Error initializing libmlx!");exit(1)
-#include "RTv1.h"
+#include "rtv1.h"
 #include "wrapper.h"
 
 int			hook_keys(int key, t_ctx *c)

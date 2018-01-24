@@ -6,12 +6,12 @@
 #    By: lkaser <lkaser@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/20 13:52:57 by lkaser            #+#    #+#              #
-#    Updated: 2018/01/23 20:57:43 by lkaser           ###   ########.fr        #
+#    Updated: 2018/01/23 21:02:21 by lkaser           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = RTv1
-LIST = RTv1 buffer mlx matrix vector camera
+LIST = rtv1 buffer mlx matrix vector camera
 
 SRC = $(addsuffix .c, $(LIST))
 OBJ = $(addsuffix .o, $(LIST))
@@ -23,6 +23,7 @@ CFLAGS = -O3 -Wall -Wextra -Werror
 all: $(NAME)
 
 $(NAME): $(OBJ)
+	@echo "\033[32;1mLinking.. \033[0m"
 	@make -C libft
 	@make -C libmlx
 	@gcc $(CFLAGS) $(CPPFLAGS) $(LDFLAGS) $(SRC) -o $(NAME)
