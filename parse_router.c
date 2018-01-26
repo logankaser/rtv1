@@ -6,31 +6,66 @@
 /*   By: dhill <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 22:14:37 by dhill             #+#    #+#             */
-/*   Updated: 2018/01/24 00:01:20 by dhill            ###   ########.fr       */
+/*   Updated: 2018/01/25 21:20:50 by dhill            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
 
-t_vec3	get_position(char *p1, char *p2, char *p3)
+void	get_vec3(char *p1, char *p2, char *p3, t_vec3 var)
 {
-	//will always be first 3 doubles;
+	var->x = ft_atof(p1);
+	var->y = ft_atof(p2);
+	var->z = ft_atof(p3);
 }
 
-t_vec3	get_rotation(char *r1, char *r2, char *r3)
+void	parse_placement(char **split, list)
 {
-	//unsure of this, the direction maybe
+	obj->position = get_vec3(split[1], split[2], split[3]);
+	obj->rotation = get_vec3(split[4], split[5], split[6]);
 }
 
-double	get_radius(char *radius)
+void	parse_detail(char **split, object)
 {
-	//just a quick atof of whatever 'string' the radius is
+	obj->radius = ft_atof(split[7]);
+	obj->color = ft_htou(split[8]);
 }
 
-unsigned	get_color(char *color)
+void	parse_all(char **split, object)
 {
-	//change 0xFFFFFF str to an usnigned int
-	return (ft_htou(color));
+	int i;
+
+	i = 0;	
+	while (split[i] != '\0')
+	{
+		if (ft_strcmp(split[0], "camera") == 0)
+			parse_placement(split, list obj);
+		if (ft_strcmp(split[0], "sphere") == 0)
+		{
+			obj->type = t_sphere;
+			parse_placement(split, list obj);
+			parse_detail(split, obj);
+		}
+		if (ft_strcmp(split[0], "cylinder") == 0)
+		{
+			obj->type = t_cylinder;
+			parse_placement(split, list obj);
+			parse_detail(split, obj);
+		}
+		if (ft_strcmp(split[0], "cone") == 0)
+		{
+			obj->type = t_cone;
+			parse_placement(split, list obj);
+			parse_detail(split, obj);
+		}
+		if (ft_strcmp(split[0], "plane") == 0)
+		{
+			obj->type = t_cone;
+			parse_placement(split, list obj);
+			obj->color = ft_htou(split[7]);
+		}
+		i++;
+	}
 }
 
 void	parse(lisssst)
@@ -39,29 +74,13 @@ void	parse(lisssst)
 	int		chk;
 	char	**split;
 	char	*line;
-	int		i;
-
-	i = 0;
 
 	(var->fd = open(str, O_RDONLY)) < 0 ? error("Opening file failed.") : 0;
 	while ((chk = get_next_line(var->fd, &line)) > 0)
 	{
 		split = ft_strsplit(line, ' ');
 		!split ? error("Error: Data parsing failed.") : 0;
-		while (split[i] != '\0')
-		{
-			if (ft_strcmp(split[0], "camera") == 0)
-				camera(split, list);
-			if (ft_strcmp(split[0], "sphere") == 0)
-				sphere(split, list);
-			if (ft_strcmp(split[0], "cylinder") == 0)
-				cylinder(split, list);
-			if (ft_strcmp(split[0], "plane") == 0)
-				plane(split, list);
-			if (ft_strcmp(split[0], "cone") == 0)
-				cone(split, list);
-		}
-
+		parse_all(split, obj);
 		ft_strdel(&line);
 	}
 }
