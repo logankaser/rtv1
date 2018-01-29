@@ -6,7 +6,7 @@
 /*   By: lkaser <lkaser@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 17:13:31 by lkaser            #+#    #+#             */
-/*   Updated: 2018/01/23 20:52:55 by lkaser           ###   ########.fr       */
+/*   Updated: 2018/01/25 16:35:45 by lkaser           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,5 @@ void	look_at(t_vec3 from, t_vec3 to, t_mat *cam)
 	MAT_ROW(cam->m[0], right.x, right.y, right.z, 0);
 	MAT_ROW(cam->m[1], up.x, up.y, up.z, 0);
 	MAT_ROW(cam->m[2], forward.x, forward.y, forward.z, 0);
-	MAT_ROW(cam->m[3], from.x, from.y, from.z, 0);
+	MAT_ROW(cam->m[3], from.x, from.y, from.z, 1);
 }

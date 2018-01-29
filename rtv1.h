@@ -6,7 +6,7 @@
 /*   By: lkaser <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/18 11:03:56 by lkaser            #+#    #+#             */
-/*   Updated: 2018/01/24 13:50:52 by lkaser           ###   ########.fr       */
+/*   Updated: 2018/01/28 17:27:23 by lkaser           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,10 @@ typedef	struct	s_rt
 {
 	t_ctx		*c;
 	t_mat		*cam;
-	double		scale;
 	t_list		*objs;
 	t_list		*lights;
+	double		scale;
+	double		aspect;
 }				t_rt;
 
 #endif

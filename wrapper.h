@@ -6,7 +6,7 @@
 /*   By: lkaser <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/18 11:03:56 by lkaser            #+#    #+#             */
-/*   Updated: 2018/01/25 20:42:17 by dhill            ###   ########.fr       */
+/*   Updated: 2018/01/28 16:50:46 by lkaser           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define WRAPPER_H
 # include "libft.h"
 # include "mlx.h"
-# include <time.h>
 
 # define WINDOW_NAME "RTv1"
 # define RGB(r,g,b) ((b) + ((g) << 8) + ((r) << 16))
@@ -22,6 +21,8 @@
 # define V3(x,y,z) ((t_vec3){x,y,z})
 # define V3_MINUS_V3(a,b) (V3(a.x - b.x, a.y - b.y, a.z - b.z))
 # define V3_PLUS_V3(a,b) (V3(a.x + b.x, a.y + b.y, a.z + b.z))
+# define V3_MULT(v, m) (V3(v.x * m, v.y * m, v.z * m))
+# define V3_DIV(v, d) (V3(v.x / d, v.y / d, v.z / d))
 # define V3_DOT(a,b) (a.x * b.x + a.y * b.y + a.z * b.z)
 # define MAT_ROW(m,x,y,z,w) m[0] = x;m[1] = y;m[2] = z;m[3] = w
 
