@@ -6,7 +6,7 @@
 /*   By: lkaser <lkaser@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 16:13:37 by lkaser            #+#    #+#             */
-/*   Updated: 2018/01/29 19:43:14 by lkaser           ###   ########.fr       */
+/*   Updated: 2018/01/30 14:42:53 by lkaser           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include <math.h>
 #include <stdlib.h>
 
-static unsigned color_mult(unsigned c, const float x)
+unsigned	color_mult(unsigned c, const float x)
 {
 	unsigned char r;
 	unsigned char g;
@@ -28,12 +28,20 @@ static unsigned color_mult(unsigned c, const float x)
 	return (RGB(r, g, b));
 }
 
-unsigned	shade(t_ray *ray, t_rt *rt, t_obj *hit_obj, double hit_dis)
+unsigned	shade(t_ray ray, t_rt *rt, t_obj *hit_obj, double hit_dis)
 {
-	(void)ray;
-	(void)hit_dis;
 	(void)rt;
-	return (color_mult(hit_obj->color, hit_dis));
+	vec3_mult(&ray.d, hit_dis);
+	t_vec3 hp = V3_PLUS_V3(ray.o, ray.d);
+	vec3_normalize(&hp);
+	t_vec3 normal = V3_MINUS_V3(hp, hit_obj->position);
+	t_vec3 light_dir = V3_MINUS_V3(hp, V3(0, -20, 0));
+	double fac = 0.2 + (0.5 * V3_DOT(normal, light_dir));
+	if (fac < 0)
+		fac = 0;
+	if (fac > 1)
+		fac = 1;
+	return (color_mult(hit_obj->color, fac));
 }
 
 unsigned	trace(t_ray *ray, t_rt *rt)
@@ -62,7 +70,7 @@ unsigned	trace(t_ray *ray, t_rt *rt)
 		}
 		objs = objs->next;
 	}
-	return (hit_obj ? shade(ray, rt, hit_obj, hit_dis) : 0x000000);
+	return (hit_obj ? shade(*ray, rt, hit_obj, hit_dis) : 0x000000);
 }
 
 void		init(t_rt *rt)
@@ -83,13 +91,13 @@ void		init(t_rt *rt)
 	ex->color = 0xFF0000;
 	ft_lstpush(&rt->objs, ex, sizeof(t_obj));
 	ASSERT((ex1 = malloc(sizeof(t_obj))));
-	ex1->position = V3(0, 0.5, 0.5);
+	ex1->position = V3(0, 0, 1);
 	ex1->type = t_sphere;
 	ex1->radius = 0.6;
 	ex1->color = 0x00FF00;
 	ft_lstpush(&rt->objs, ex1, sizeof(t_obj));
 	ASSERT((ex2 = malloc(sizeof(t_obj))));
-	ex2->position = V3(-0.3, -0.5, -0.5);
+	ex2->position = V3(0, 0, -1);
 	ex2->type = t_sphere;
 	ex2->radius = 0.4;
 	ex2->color = 0x0000FF;
