@@ -6,12 +6,12 @@
 #    By: lkaser <lkaser@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/20 13:52:57 by lkaser            #+#    #+#              #
-#    Updated: 2018/01/29 18:11:11 by lkaser           ###   ########.fr        #
+#    Updated: 2018/01/29 19:49:53 by lkaser           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = RTv1
-LIST = rtv1 buffer mlx matrix vector camera trace
+LIST = rtv1 buffer mlx matrix vector vector_op camera trace
 
 SRC = $(addsuffix .c, $(LIST))
 OBJ = $(addsuffix .o, $(LIST))

@@ -6,7 +6,7 @@
 /*   By: lkaser <lkaser@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 16:13:37 by lkaser            #+#    #+#             */
-/*   Updated: 2018/01/29 19:10:40 by lkaser           ###   ########.fr       */
+/*   Updated: 2018/01/29 19:43:14 by lkaser           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,24 @@
 #include <math.h>
 #include <stdlib.h>
 
+static unsigned color_mult(unsigned c, const float x)
+{
+	unsigned char r;
+	unsigned char g;
+	unsigned char b;
+
+	r = (c & 0xFF) * x;
+	g = (c >> 8 & 0xFF) * x;
+	b = (c >> 16 & 0xFF) * x;
+	return (RGB(r, g, b));
+}
+
 unsigned	shade(t_ray *ray, t_rt *rt, t_obj *hit_obj, double hit_dis)
 {
 	(void)ray;
 	(void)hit_dis;
 	(void)rt;
-	return (hit_obj->color);
+	return (color_mult(hit_obj->color, hit_dis));
 }
 
 unsigned	trace(t_ray *ray, t_rt *rt)
@@ -74,13 +86,13 @@ void		init(t_rt *rt)
 	ex1->position = V3(0, 0.5, 0.5);
 	ex1->type = t_sphere;
 	ex1->radius = 0.6;
-	ex1->color = 0x0000FF;
+	ex1->color = 0x00FF00;
 	ft_lstpush(&rt->objs, ex1, sizeof(t_obj));
 	ASSERT((ex2 = malloc(sizeof(t_obj))));
 	ex2->position = V3(-0.3, -0.5, -0.5);
 	ex2->type = t_sphere;
 	ex2->radius = 0.4;
-	ex2->color = 0x00FF00;
+	ex2->color = 0x0000FF;
 	ft_lstpush(&rt->objs, ex2, sizeof(t_obj));
 }
 
@@ -101,7 +113,8 @@ int			main(void)
 		{
 			ray.d = V3((2 * (x + 0.5) / (double)WIN_X - 1) * rt.scale,
 			(1 - 2 * (y + 0.5) / (double)WIN_Y) * rt.scale, -1);
-			ray.d = vec3_normalize(vec3_x_mat(ray.d, &rt.cam));
+			ray.d = vec3_x_mat(ray.d, &rt.cam);
+			vec3_normalize(&ray.d);
 			buffer_point(rt.c->buffs->content, x, y, trace(&ray, &rt));
 		}
 	}

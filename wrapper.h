@@ -6,7 +6,7 @@
 /*   By: lkaser <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/18 11:03:56 by lkaser            #+#    #+#             */
-/*   Updated: 2018/01/29 19:12:18 by lkaser           ###   ########.fr       */
+/*   Updated: 2018/01/29 21:41:09 by lkaser           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,8 +80,12 @@ void				mat_inverse(const t_mat *m, t_mat *r);
 
 t_vec3				vec3_x_mat(t_vec3 v, t_mat *m);
 double				vec3_length(t_vec3 *v);
-t_vec3				vec3_normalize(t_vec3 v);
+void				vec3_normalize(t_vec3 *v);
 t_vec3				vec3_cross_product(t_vec3 a, t_vec3 b);
-t_vec3				vec3_minus_vec3(t_vec3 a, t_vec3 b);
-void				look_at(t_vec3 from, t_vec3 to, t_mat *cam);
+
+void				vec3_minus_vec3(t_vec3 *a, t_vec3 *b);
+void				vec3_plus_vec3(t_vec3 *a, t_vec3 *b);
+void				vec3_mult(t_vec3 *v, double m);
+void				vec3_div(t_vec3 *v, double d);
+
 #endif

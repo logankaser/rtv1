@@ -6,7 +6,7 @@
 /*   By: lkaser <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/02 15:44:27 by lkaser            #+#    #+#             */
-/*   Updated: 2018/01/22 14:50:01 by lkaser           ###   ########.fr       */
+/*   Updated: 2018/01/29 21:41:18 by lkaser           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,19 +36,18 @@ double	vec3_length(t_vec3 *v)
 	return (sqrt(v->x * v->x + v->y * v->y + v->z * v->z));
 }
 
-t_vec3	vec3_normalize(t_vec3 v)
+void	vec3_normalize(t_vec3 *v)
 {
 	double len;
 
-	len = vec3_length(&v);
+	len = vec3_length(v);
 	if (len > 0)
 	{
 		len = 1 / len;
-		v.x *= len;
-		v.y *= len;
-		v.z *= len;
+		v->x *= len;
+		v->y *= len;
+		v->z *= len;
 	}
-	return (v);
 }
 
 t_vec3	vec3_cross_product(t_vec3 a, t_vec3 b)
