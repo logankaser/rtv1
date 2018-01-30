@@ -6,7 +6,7 @@
 /*   By: lkaser <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/18 11:03:56 by lkaser            #+#    #+#             */
-/*   Updated: 2018/01/29 18:29:31 by lkaser           ###   ########.fr       */
+/*   Updated: 2018/01/29 19:13:00 by lkaser           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,5 +64,6 @@ typedef	struct	s_rt
 }				t_rt;
 
 void			trace_sphere(t_ray *ray, t_obj *obj, double *dis);
+int				hook_keys(int key, t_rt *rt);
 
 #endif

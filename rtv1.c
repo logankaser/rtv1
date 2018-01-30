@@ -6,7 +6,7 @@
 /*   By: lkaser <lkaser@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 16:13:37 by lkaser            #+#    #+#             */
-/*   Updated: 2018/01/29 19:06:11 by lkaser           ###   ########.fr       */
+/*   Updated: 2018/01/29 19:10:40 by lkaser           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,7 @@ int			main(void)
 		}
 	}
 	blit_all(rt.c);
+	mlx_hook(rt.c->win, 2, 0, hook_keys, rt.c);
 	mlx_loop(rt.c->mlx);
 	return (0);
 }

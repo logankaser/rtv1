@@ -6,21 +6,20 @@
 /*   By: lkaser <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/02 15:44:27 by lkaser            #+#    #+#             */
-/*   Updated: 2018/01/24 13:51:48 by lkaser           ###   ########.fr       */
+/*   Updated: 2018/01/29 19:09:16 by lkaser           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #define ASSERT_FAIL ft_puterror("Error initializing libmlx!");exit(1)
 #include "rtv1.h"
-#include "wrapper.h"
 
-int			hook_keys(int key, t_ctx *c)
+int			hook_keys(int key, t_rt *rt)
 {
 	if (key == 53)
 	{
-		mlx_destroy_window(c->mlx, c->win);
-		free(c->mlx);
-		free(c);
+		mlx_destroy_window(rt->c->mlx, rt->c->win);
+		free(rt->c->mlx);
+		free(rt->c);
 		exit(0);
 	}
 	return (0);
