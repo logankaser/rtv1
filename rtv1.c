@@ -6,7 +6,7 @@
 /*   By: lkaser <lkaser@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 16:13:37 by lkaser            #+#    #+#             */
-/*   Updated: 2018/01/29 18:59:30 by lkaser           ###   ########.fr       */
+/*   Updated: 2018/01/29 19:06:11 by lkaser           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,26 +55,33 @@ unsigned	trace(t_ray *ray, t_rt *rt)
 
 void		init(t_rt *rt)
 {
-	t_obj	*example;
-	t_obj	*example2;
+	t_obj	*ex;
+	t_obj	*ex1;
+	t_obj	*ex2;
 
 	rt->c = context_new();
 	rt->cam.order = 4;
 	look_at(V3(4, 0, 0), V3(0, 0, 0), &rt->cam);
 	rt->scale = tan(FOV * 0.5 * (M_PI / 180));
 	rt->objs = NULL;
-	ASSERT((example = malloc(sizeof(t_obj))));
-	example->position = V3(0, 0, 0);
-	example->type = t_sphere;
-	example->radius = 0.5;
-	example->color = 0xFF0000;
-	ft_lstpush(&rt->objs, example, sizeof(t_obj));
-	ASSERT((example2 = malloc(sizeof(t_obj))));
-	example2->position = V3(0, 0.5, 0);
-	example2->type = t_sphere;
-	example2->radius = 0.6;
-	example2->color = 0x0000FF;
-	ft_lstpush(&rt->objs, example2, sizeof(t_obj));
+	ASSERT((ex = malloc(sizeof(t_obj))));
+	ex->position = V3(0, 0, 0);
+	ex->type = t_sphere;
+	ex->radius = 0.5;
+	ex->color = 0xFF0000;
+	ft_lstpush(&rt->objs, ex, sizeof(t_obj));
+	ASSERT((ex1 = malloc(sizeof(t_obj))));
+	ex1->position = V3(0, 0.5, 0.5);
+	ex1->type = t_sphere;
+	ex1->radius = 0.6;
+	ex1->color = 0x0000FF;
+	ft_lstpush(&rt->objs, ex1, sizeof(t_obj));
+	ASSERT((ex2 = malloc(sizeof(t_obj))));
+	ex2->position = V3(-0.3, -0.5, -0.5);
+	ex2->type = t_sphere;
+	ex2->radius = 0.4;
+	ex2->color = 0x00FF00;
+	ft_lstpush(&rt->objs, ex2, sizeof(t_obj));
 }
 
 int			main(void)
