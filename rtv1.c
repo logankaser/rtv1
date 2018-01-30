@@ -6,7 +6,7 @@
 /*   By: lkaser <lkaser@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 16:13:37 by lkaser            #+#    #+#             */
-/*   Updated: 2018/01/29 18:48:00 by lkaser           ###   ########.fr       */
+/*   Updated: 2018/01/29 18:59:30 by lkaser           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ unsigned	trace(t_ray *ray, t_rt *rt)
 void		init(t_rt *rt)
 {
 	t_obj	*example;
+	t_obj	*example2;
 
 	rt->c = context_new();
 	rt->cam.order = 4;
@@ -68,6 +69,12 @@ void		init(t_rt *rt)
 	example->radius = 0.5;
 	example->color = 0xFF0000;
 	ft_lstpush(&rt->objs, example, sizeof(t_obj));
+	ASSERT((example2 = malloc(sizeof(t_obj))));
+	example2->position = V3(0, 0.5, 0);
+	example2->type = t_sphere;
+	example2->radius = 0.6;
+	example2->color = 0x0000FF;
+	ft_lstpush(&rt->objs, example2, sizeof(t_obj));
 }
 
 int			main(void)
