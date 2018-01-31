@@ -6,7 +6,7 @@
 /*   By: lkaser <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/02 15:44:27 by lkaser            #+#    #+#             */
-/*   Updated: 2018/01/22 14:50:01 by lkaser           ###   ########.fr       */
+/*   Updated: 2018/01/30 17:26:39 by lkaser           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,24 +31,33 @@ t_vec3	vec3_x_mat(t_vec3 v, t_mat *m)
 	return (r);
 }
 
+t_vec3	dir3_x_mat(t_vec3 v, t_mat *m)
+{
+	t_vec3	r;
+
+	r.x = v.x * m->m[0][0] + v.y * m->m[1][0] + v.z * m->m[2][0];
+	r.y = v.x * m->m[0][1] + v.y * m->m[1][1] + v.z * m->m[2][1];
+	r.z = v.x * m->m[0][2] + v.y * m->m[1][2] + v.z * m->m[2][2];
+	return (r);
+}
+
 double	vec3_length(t_vec3 *v)
 {
 	return (sqrt(v->x * v->x + v->y * v->y + v->z * v->z));
 }
 
-t_vec3	vec3_normalize(t_vec3 v)
+void	vec3_normalize(t_vec3 *v)
 {
 	double len;
 
-	len = vec3_length(&v);
+	len = vec3_length(v);
 	if (len > 0)
 	{
 		len = 1 / len;
-		v.x *= len;
-		v.y *= len;
-		v.z *= len;
+		v->x *= len;
+		v->y *= len;
+		v->z *= len;
 	}
-	return (v);
 }
 
 t_vec3	vec3_cross_product(t_vec3 a, t_vec3 b)

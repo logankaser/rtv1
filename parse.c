@@ -6,7 +6,7 @@
 /*   By: dhill <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 22:14:37 by dhill             #+#    #+#             */
-/*   Updated: 2018/01/30 17:20:17 by dhill            ###   ########.fr       */
+/*   Updated: 2018/01/30 17:31:55 by dhill            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void	parse_all(char **split, object)
 	}
 }
 
-void	parse(t_list objs)
+void	parse(t_list *objs)
 {
 	int		fd;
 	int		chk;

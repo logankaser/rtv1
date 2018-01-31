@@ -6,12 +6,12 @@
 #    By: lkaser <lkaser@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/20 13:52:57 by lkaser            #+#    #+#              #
-#    Updated: 2018/01/23 21:02:21 by lkaser           ###   ########.fr        #
+#    Updated: 2018/01/30 16:48:57 by lkaser           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = RTv1
-LIST = rtv1 buffer mlx matrix vector camera
+LIST = rtv1 camera intersect buffer mlx matrix vector vector_op
 
 SRC = $(addsuffix .c, $(LIST))
 OBJ = $(addsuffix .o, $(LIST))

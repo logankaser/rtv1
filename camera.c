@@ -6,7 +6,7 @@
 /*   By: lkaser <lkaser@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 17:13:31 by lkaser            #+#    #+#             */
-/*   Updated: 2018/01/25 16:35:45 by lkaser           ###   ########.fr       */
+/*   Updated: 2018/01/29 19:44:26 by lkaser           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@ void	look_at(t_vec3 from, t_vec3 to, t_mat *cam)
 	t_vec3 right;
 	t_vec3 up;
 
-	forward = vec3_normalize(V3_MINUS_V3(from, to));
+	forward = V3_MINUS_V3(from, to);
+	vec3_normalize(&forward);
 	right = vec3_cross_product(V3(0, 1, 0), forward);
 	up = vec3_cross_product(forward, right);
 	MAT_ROW(cam->m[0], right.x, right.y, right.z, 0);

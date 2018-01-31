@@ -1,38 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mlx.c                                              :+:      :+:    :+:   */
+/*   vector_op.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lkaser <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/02 15:44:27 by lkaser            #+#    #+#             */
-/*   Updated: 2018/01/29 19:09:16 by lkaser           ###   ########.fr       */
+/*   Updated: 2018/01/29 21:41:35 by lkaser           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#define ASSERT_FAIL ft_puterror("Error initializing libmlx!");exit(1)
-#include "rtv1.h"
+#include "wrapper.h"
+#include <math.h>
 
-int			hook_keys(int key, t_rt *rt)
+void	vec3_minus_vec3(t_vec3 *a, t_vec3 *b)
 {
-	if (key == 53)
-	{
-		mlx_destroy_window(rt->c->mlx, rt->c->win);
-		free(rt->c->mlx);
-		free(rt->c);
-		exit(0);
-	}
-	return (0);
+	a->x -= b->x;
+	a->y -= b->y;
+	a->z -= b->z;
 }
 
-t_ctx		*context_new(void)
+void	vec3_plus_vec3(t_vec3 *a, t_vec3 *b)
 {
-	t_ctx	*c;
+	a->x += b->x;
+	a->y += b->y;
+	a->z += b->z;
+}
 
-	ASSERT(c = malloc(sizeof(t_ctx)));
-	ASSERT(c->mlx = mlx_init());
-	ASSERT(c->win = mlx_new_window(c->mlx, WIN_X, WIN_Y, WINDOW_NAME));
-	c->buffs = NULL;
-    ft_lstpush(&c->buffs, buffer_new(c, WIN_X, WIN_Y), sizeof(t_buff));
-	return (c);
+void	vec3_mult(t_vec3 *v, double m)
+{
+	v->x *= m;
+	v->y *= m;
+	v->z *= m;
+}
+
+void	vec3_div(t_vec3 *v, double d)
+{
+	v->x /= d;
+	v->y /= d;
+	v->z /= d;
 }
