@@ -6,11 +6,19 @@
 /*   By: dhill <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 22:59:02 by dhill             #+#    #+#             */
-/*   Updated: 2018/01/23 23:13:27 by dhill            ###   ########.fr       */
+/*   Updated: 2018/01/31 11:52:57 by dhill            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
+
+int		ft_iswhitespace(char c)
+{
+	if (c == ' ' || c == '\n' || c == '\t' || c == '\r' || c == '\v'
+			|| c == '\f')
+		return (1);
+	return (0);
+}
 
 unsigned int    ft_htou(const char *str)
 {

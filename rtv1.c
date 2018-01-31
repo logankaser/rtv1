@@ -6,15 +6,12 @@
 /*   By: lkaser <lkaser@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 16:13:37 by lkaser            #+#    #+#             */
-/*   Updated: 2018/01/30 18:58:50 by dhill            ###   ########.fr       */
+/*   Updated: 2018/01/31 11:40:48 by dhill            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #define ASSERT_FAIL ft_puterror("Exception!\n");exit(1)
 #include "rtv1.h"
-#include <fcntl.h>
-#include <math.h>
-#include <stdlib.h>
 
 unsigned	color_mult(unsigned c, const float x)
 {

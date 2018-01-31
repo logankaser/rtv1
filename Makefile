@@ -6,12 +6,13 @@
 #    By: lkaser <lkaser@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/20 13:52:57 by lkaser            #+#    #+#              #
-#    Updated: 2018/01/30 16:48:57 by lkaser           ###   ########.fr        #
+#    Updated: 2018/01/31 11:57:02 by dhill            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = RTv1
-LIST = rtv1 camera intersect buffer mlx matrix vector vector_op
+LIST = rtv1 camera intersect buffer mlx matrix vector vector_op helper \
+	   parse parse_help
 
 SRC = $(addsuffix .c, $(LIST))
 OBJ = $(addsuffix .o, $(LIST))

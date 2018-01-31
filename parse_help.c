@@ -6,7 +6,7 @@
 /*   By: dhill <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/30 19:43:58 by dhill             #+#    #+#             */
-/*   Updated: 2018/01/30 22:56:50 by dhill            ###   ########.fr       */
+/*   Updated: 2018/01/31 11:51:41 by dhill            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,14 @@ void	parse_sphere(char **split, t_obj *obj)
 void	parse_cone_plane(char **split, t_obj *obj)
 {
 	obj->type = ft_strequ(split[0], "cone") == 1 ? t_cone : t_plane;
-	get_vec3(split[4], split[5], split[6], obj->rotation);
+	get_vec3(split[4], split[5], split[6], &obj->rotation);
 	obj->color = ft_htou(split[7]);
 }
 
 void	parse_cylinder(char **split, t_obj *obj)
 {
 	obj->type = t_cylinder;
-	get_vec3(split[4], split[5], split[6], obj->rotation);
+	get_vec3(split[4], split[5], split[6], &obj->rotation);
 	obj->radius = ft_atof(split[7]);
 	obj->color = ft_htou(split[8]);
 }
