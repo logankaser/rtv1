@@ -6,7 +6,7 @@
 /*   By: lkaser <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/18 11:03:56 by lkaser            #+#    #+#             */
-/*   Updated: 2018/01/31 11:54:01 by dhill            ###   ########.fr       */
+/*   Updated: 2018/01/31 12:44:53 by lkaser           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,8 @@ typedef	struct	s_rt
 	t_mat		cam;
 }				t_rt;
 
-t_bool			intersect_sphere(t_ray *ray, t_obj *obj, double *dis);
+t_bool			intersect_sphere(t_ray ray, t_obj *obj, double *dis);
+t_bool			intersect_plane(t_ray ray, t_obj *obj, double *dis);
 int				hook_keys(int key, t_rt *rt);
 void			look_at(t_vec3 from, t_vec3 to, t_mat *cam);
 
