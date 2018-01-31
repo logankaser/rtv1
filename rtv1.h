@@ -6,7 +6,7 @@
 /*   By: lkaser <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/18 11:03:56 by lkaser            #+#    #+#             */
-/*   Updated: 2018/01/30 17:31:36 by dhill            ###   ########.fr       */
+/*   Updated: 2018/01/30 22:56:33 by dhill            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ typedef	struct	s_object
 
 typedef	struct	s_light
 {
-	unsigned	color;
+	t_vec3		position;
 	double		intensity;
 }				t_light;
 
@@ -66,4 +66,12 @@ typedef	struct	s_rt
 t_bool			intersect_sphere(t_ray *ray, t_obj *obj, double *dis);
 int				hook_keys(int key, t_rt *rt);
 void			look_at(t_vec3 from, t_vec3 to, t_mat *cam);
+
+/*
+** parse_help.c
+*/
+void	get_vec3(char *p1, char *p2, char *p3, t_vec3 *var);
+void	parse_sphere(char **split, t_obj *obj);
+void	parse_cone_plane(char **split, t_obj *obj);
+void	parse_cylinder(char **split, t_obj *obj);
 #endif

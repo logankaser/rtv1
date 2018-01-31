@@ -6,7 +6,7 @@
 /*   By: lkaser <lkaser@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 16:13:37 by lkaser            #+#    #+#             */
-/*   Updated: 2018/01/30 17:25:01 by lkaser           ###   ########.fr       */
+/*   Updated: 2018/01/30 18:58:50 by dhill            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,9 +73,9 @@ unsigned	trace(t_ray *ray, t_rt *rt)
 	return (hit_obj ? shade(*ray, rt, hit_obj, hit_dis) : 0x000000);
 }
 
-void		init(t_rt *rt)
+void		init(t_rt *rt, int ac, char **av)
 {
-	t_obj	*ex;
+	/*t_obj	*ex;
 	t_obj	*ex1;
 	t_obj	*ex2;
 
@@ -102,16 +102,27 @@ void		init(t_rt *rt)
 	ex2->radius = 0.4;
 	ex2->color = 0x0000FF;
 	ft_lstpush(&rt->objs, ex2, sizeof(t_obj));
+	*/
+	if (ac != 2)
+	{
+		ft_putendl("No scene selected or too many files.");
+		exit(0);
+	}
+	rt->c = context_new();
+	rt->cam.order = 4;
+	rt->scale = tan(FOV * 0.5 * (M_PI / 180));
+	rt->objs = NULL;
+	parse(av[1], rt);
 }
 
-int			main(void)
+int			main(int ac, char **av)
 {
 	int		x;
 	int		y;
 	t_ray	ray;
 	t_rt	rt;
 
-	init(&rt);
+	init(&rt, ac, av);
 	ray.o = vec3_x_mat(V3(0, 0, 0), &rt.cam);
 	y = -1;
 	while (++y < WIN_Y)
