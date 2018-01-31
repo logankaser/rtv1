@@ -1,5 +1,6 @@
 camera 0.0 0.0 0.0 0.0 0.0 0.0
-sphere 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0xFFFFFF
-cylinder 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0xFFFFFF
-cone 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0xFFFFFF
+light 0.0 0.0 0.0 0.0
+sphere 0.0 0.0 0.0 0.0 0xFFFFFF
+cone 0.0 0.0 0.0 0.0 0.0 0.0 0xFFFFFF
 plane 0.0 0.0 0.0 0.0 0.0 0.0 0xFFFFFF
+cylinder 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0xFFFFFF

@@ -6,7 +6,7 @@
 /*   By: lkaser <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/18 11:03:56 by lkaser            #+#    #+#             */
-/*   Updated: 2018/01/30 20:12:32 by lkaser           ###   ########.fr       */
+/*   Updated: 2018/01/31 12:44:53 by lkaser           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,9 @@
 # define WIN_Y 1024
 # define FOV 40
 # include "wrapper.h"
+# include <fcntl.h>
+# include <math.h>
+# include <stdlib.h>
 
 typedef struct	s_ray
 {
@@ -43,7 +46,7 @@ typedef	struct	s_object
 
 typedef	struct	s_light
 {
-	unsigned	color;
+	t_vec3		position;
 	double		intensity;
 }				t_light;
 
@@ -67,4 +70,18 @@ t_bool			intersect_sphere(t_ray ray, t_obj *obj, double *dis);
 t_bool			intersect_plane(t_ray ray, t_obj *obj, double *dis);
 int				hook_keys(int key, t_rt *rt);
 void			look_at(t_vec3 from, t_vec3 to, t_mat *cam);
+
+/*
+** parse.c & parse_help.c
+*/
+void			parse(char *file, t_rt *rt);
+void			get_vec3(char *p1, char *p2, char *p3, t_vec3 *var);
+void			parse_sphere(char **split, t_obj *obj);
+void			parse_cone_plane(char **split, t_obj *obj);
+void			parse_cylinder(char **split, t_obj *obj);
+/*
+** helper.c
+*/
+unsigned int	ft_htou(const char *str);
+int				ft_iswhitespace(char c);
 #endif
