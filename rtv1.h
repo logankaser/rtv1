@@ -6,12 +6,12 @@
 /*   By: lkaser <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/18 11:03:56 by lkaser            #+#    #+#             */
-/*   Updated: 2018/01/28 17:27:23 by lkaser           ###   ########.fr       */
+/*   Updated: 2018/01/30 17:19:55 by dhill            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FDF_H
-# define FDF_H
+#ifndef RTV1_H
+# define RTV1_H
 
 # define WIN_X 1920
 # define WIN_Y 1080

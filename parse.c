@@ -6,7 +6,7 @@
 /*   By: dhill <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 22:14:37 by dhill             #+#    #+#             */
-/*   Updated: 2018/01/28 16:44:47 by lkaser           ###   ########.fr       */
+/*   Updated: 2018/01/30 17:20:17 by dhill            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,13 @@ void	get_vec3(char *p1, char *p2, char *p3, t_vec3 var)
 	var->z = ft_atof(p3);
 }
 
-void	parse_placement(char **split, list)
+void	parse_placement(char **split, t_list *)
 {
 	obj->position = get_vec3(split[1], split[2], split[3]);
 	obj->rotation = get_vec3(split[4], split[5], split[6]);
 }
 
-void	parse_detail(char **split, object)
+void	parse_detail(char **split, t_vec3 *obj)
 {
 	obj->radius = ft_atof(split[7]);
 	obj->color = ft_htou(split[8]);
