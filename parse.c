@@ -6,11 +6,11 @@
 /*   By: dhill <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 22:14:37 by dhill             #+#    #+#             */
-/*   Updated: 2018/01/31 11:42:34 by dhill            ###   ########.fr       */
+/*   Updated: 2018/01/31 12:48:54 by dhill            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#define ASSERT_FAIL ft_puterror("Malloc failed!\n");exit(1);
+#define ASSERT_FAIL ft_puterror("Malloc failed!\n");exit(1)
 #include "rtv1.h"
 
 void	ft_err(char *s)
