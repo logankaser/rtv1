@@ -6,7 +6,7 @@
 /*   By: lkaser <lkaser@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 16:13:37 by lkaser            #+#    #+#             */
-/*   Updated: 2018/01/31 12:45:39 by lkaser           ###   ########.fr       */
+/*   Updated: 2018/01/31 13:24:35 by lkaser           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,35 +80,6 @@ unsigned	trace(t_ray *ray, t_rt *rt)
 
 void		init(t_rt *rt, int ac, char **av)
 {
-	/*t_obj	*ex;
-	t_obj	*ex1;
-	t_obj	*ex2;
-
-	rt->c = context_new();
-	rt->cam.order = 4;
-	look_at(V3(5, 0, 0), V3(0, 0, 0), &rt->cam);
-	rt->scale = tan(FOV * 0.5 * (M_PI / 180));
-	rt->objs = NULL;
-	ASSERT((ex = malloc(sizeof(t_obj))));
-	ex->position = V3(0, 0.2, 0);
-	ex->type = t_sphere;
-	ex->radius = 0.5;
-	ex->color = 0xFF0000;
-	ft_lstpush(&rt->objs, ex, sizeof(t_obj));
-	ASSERT((ex1 = malloc(sizeof(t_obj))));
-	ex1->position = V3(0, 0, 1);
-	ex1->type = t_sphere;
-	ex1->radius = 0.6;
-	ex1->color = 0x00FF00;
-	ft_lstpush(&rt->objs, ex1, sizeof(t_obj));
-	ASSERT((ex2 = malloc(sizeof(t_obj))));
-	ex2->position = V3(0, -0.5, 0);
-	ex2->type = t_plane;
-	ex2->radius = 0;
-	ex2->rotation = V3(0, 1, 0.3);
-	ex2->color = 0xFFFF00;
-	ft_lstpush(&rt->objs, ex2, sizeof(t_obj));
-	*/
 	if (ac != 2)
 	{
 		ft_putendl("No scene selected or too many files.");
