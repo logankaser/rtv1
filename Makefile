@@ -6,21 +6,22 @@
 #    By: lkaser <lkaser@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/20 13:52:57 by lkaser            #+#    #+#              #
-#    Updated: 2018/01/31 13:17:17 by dhill            ###   ########.fr        #
+#    Updated: 2018/01/31 13:41:39 by lkaser           ###   ########.fr        #
 #    Updated: 2018/01/31 12:52:55 by lkaser           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = RTv1
-LIST = rtv1 camera intersect buffer mlx matrix vector vector_op helper \
-	   parse parse_help
+LIST = rtv1 camera intersect normal \
+buffer mlx matrix vector vector_op \
+helper parse parse_help
 
 SRC = $(addsuffix .c, $(LIST))
 OBJ = $(addsuffix .o, $(LIST))
 
 CPPFLAGS = -I libft/includes -I libmlx
 LDFLAGS = -L libft -lft -L libmlx -lmlx -framework OpenGL -framework AppKit
-CFLAGS = -03 -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror
 
 all: $(NAME)
 

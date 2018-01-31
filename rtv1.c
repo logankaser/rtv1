@@ -6,7 +6,7 @@
 /*   By: lkaser <lkaser@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 16:13:37 by lkaser            #+#    #+#             */
-/*   Updated: 2018/01/31 13:24:35 by lkaser           ###   ########.fr       */
+/*   Updated: 2018/01/31 13:39:16 by lkaser           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,8 @@ unsigned	shade(t_ray ray, t_rt *rt, t_obj *hit_obj, double hit_dis)
 	vec3_mult(&ray.d, hit_dis);
 	t_vec3 hp = V3_PLUS_V3(ray.o, ray.d);
 	vec3_normalize(&hp);
-
-	if (hit_obj->type == t_sphere)
-		normal = V3_MINUS_V3(hp, hit_obj->position);
-	else
-		normal = hit_obj->rotation;
-	vec3_normalize(&normal);
+	MATCH(hit_obj->type == t_sphere, normal = normal_sphere(hit_obj, hp));
+	OR(hit_obj->type == t_plane, normal = normal_plane(hit_obj, hp));
 	t_vec3 light_dir = V3_MINUS_V3(hp, V3(0, -7, 0));
 	double fac = (1 / 3.0) * V3_DOT(normal, light_dir);
 	if (fac < 0)
