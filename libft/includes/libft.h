@@ -6,7 +6,7 @@
 /*   By: lkaser <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/18 11:03:56 by lkaser            #+#    #+#             */
-/*   Updated: 2018/01/25 15:25:30 by lkaser           ###   ########.fr       */
+/*   Updated: 2018/01/30 16:49:37 by lkaser           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@
 ** Macros.
 */
 
-# define TRUE 1;
-# define FALSE 0;
+# define TRUE (1)
+# define FALSE (0)
 # define NULL_GUARD(a) if(!(a)) return (NULL);
 # define ASSERT(a) if (!(a)) {ASSERT_FAIL;}
 # define ANY2(x,a,b) (x == a || x == b)

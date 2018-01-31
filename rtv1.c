@@ -6,7 +6,7 @@
 /*   By: lkaser <lkaser@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 16:13:37 by lkaser            #+#    #+#             */
-/*   Updated: 2018/01/30 14:42:53 by lkaser           ###   ########.fr       */
+/*   Updated: 2018/01/30 17:25:01 by lkaser           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,10 +59,10 @@ unsigned	trace(t_ray *ray, t_rt *rt)
 	{
 		dis = INFINITY;
 		obj = objs->content;
-		MATCH(obj->type == t_sphere, trace_sphere(ray, obj, &dis));
-		//OR(obj->type == t_plane, trace_plane(ray, obj, &dis));
-		//OR(obj->type == t_cylinder, trace_cylinder(ray, obj, &dis));
-		//OR(obj->type == t_cone, trace_cone(ray, obj, &dis));
+		MATCH(obj->type == t_sphere, intersect_sphere(ray, obj, &dis));
+		//OR(obj->type == t_plane, intersect_plane(ray, obj, &dis));
+		//OR(obj->type == t_cylinder, intersect_cylinder(ray, obj, &dis));
+		//OR(obj->type == t_cone, intersect_cone(ray, obj, &dis));
 		if (dis < INFINITY && dis < hit_dis)
 		{
 			hit_dis = dis;
@@ -81,7 +81,7 @@ void		init(t_rt *rt)
 
 	rt->c = context_new();
 	rt->cam.order = 4;
-	look_at(V3(4, 0, 0), V3(0, 0, 0), &rt->cam);
+	look_at(V3(5, 0, 0), V3(0, 0, 0), &rt->cam);
 	rt->scale = tan(FOV * 0.5 * (M_PI / 180));
 	rt->objs = NULL;
 	ASSERT((ex = malloc(sizeof(t_obj))));
@@ -112,7 +112,7 @@ int			main(void)
 	t_rt	rt;
 
 	init(&rt);
-	ray.o = vec3_x_mat(V3(0, 0, -20), &rt.cam);
+	ray.o = vec3_x_mat(V3(0, 0, 0), &rt.cam);
 	y = -1;
 	while (++y < WIN_Y)
 	{
@@ -121,7 +121,7 @@ int			main(void)
 		{
 			ray.d = V3((2 * (x + 0.5) / (double)WIN_X - 1) * rt.scale,
 			(1 - 2 * (y + 0.5) / (double)WIN_Y) * rt.scale, -1);
-			ray.d = vec3_x_mat(ray.d, &rt.cam);
+			ray.d = dir3_x_mat(ray.d, &rt.cam);
 			vec3_normalize(&ray.d);
 			buffer_point(rt.c->buffs->content, x, y, trace(&ray, &rt));
 		}
