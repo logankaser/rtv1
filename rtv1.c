@@ -6,7 +6,7 @@
 /*   By: lkaser <lkaser@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 16:13:37 by lkaser            #+#    #+#             */
-/*   Updated: 2018/01/31 12:45:39 by lkaser           ###   ########.fr       */
+/*   Updated: 2018/01/31 13:39:16 by lkaser           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,8 @@ unsigned	shade(t_ray ray, t_rt *rt, t_obj *hit_obj, double hit_dis)
 	vec3_mult(&ray.d, hit_dis);
 	t_vec3 hp = V3_PLUS_V3(ray.o, ray.d);
 	vec3_normalize(&hp);
-
-	if (hit_obj->type == t_sphere)
-		normal = V3_MINUS_V3(hp, hit_obj->position);
-	else
-		normal = hit_obj->rotation;
-	vec3_normalize(&normal);
+	MATCH(hit_obj->type == t_sphere, normal = normal_sphere(hit_obj, hp));
+	OR(hit_obj->type == t_plane, normal = normal_plane(hit_obj, hp));
 	t_vec3 light_dir = V3_MINUS_V3(hp, V3(0, -7, 0));
 	double fac = (1 / 3.0) * V3_DOT(normal, light_dir);
 	if (fac < 0)
@@ -80,35 +76,6 @@ unsigned	trace(t_ray *ray, t_rt *rt)
 
 void		init(t_rt *rt, int ac, char **av)
 {
-	/*t_obj	*ex;
-	t_obj	*ex1;
-	t_obj	*ex2;
-
-	rt->c = context_new();
-	rt->cam.order = 4;
-	look_at(V3(5, 0, 0), V3(0, 0, 0), &rt->cam);
-	rt->scale = tan(FOV * 0.5 * (M_PI / 180));
-	rt->objs = NULL;
-	ASSERT((ex = malloc(sizeof(t_obj))));
-	ex->position = V3(0, 0.2, 0);
-	ex->type = t_sphere;
-	ex->radius = 0.5;
-	ex->color = 0xFF0000;
-	ft_lstpush(&rt->objs, ex, sizeof(t_obj));
-	ASSERT((ex1 = malloc(sizeof(t_obj))));
-	ex1->position = V3(0, 0, 1);
-	ex1->type = t_sphere;
-	ex1->radius = 0.6;
-	ex1->color = 0x00FF00;
-	ft_lstpush(&rt->objs, ex1, sizeof(t_obj));
-	ASSERT((ex2 = malloc(sizeof(t_obj))));
-	ex2->position = V3(0, -0.5, 0);
-	ex2->type = t_plane;
-	ex2->radius = 0;
-	ex2->rotation = V3(0, 1, 0.3);
-	ex2->color = 0xFFFF00;
-	ft_lstpush(&rt->objs, ex2, sizeof(t_obj));
-	*/
 	if (ac != 2)
 	{
 		ft_putendl("No scene selected or too many files.");
