@@ -6,7 +6,7 @@
 /*   By: lkaser <lkaser@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 16:13:37 by lkaser            #+#    #+#             */
-/*   Updated: 2018/02/02 14:51:59 by lkaser           ###   ########.fr       */
+/*   Updated: 2018/02/02 15:14:22 by lkaser           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ unsigned	shade(t_ray ray, t_rt *rt, t_obj *hit_obj, double hit_dis)
 	vec3_mult(&ray.d, hit_dis);
 	hp = V3_PLUS_V3(ray.o, ray.d);
 	vec3_normalize(&hp);
-	light_dir = V3_MINUS_V3(V3(0, 5, -1), hp);
+	light_dir = V3_MINUS_V3(V3(1, 7, 0), hp);
 	if (!shadow(hp, light_dir, rt, &dis))
 	{
 		MATCH(hit_obj->type == t_sphere, normal = normal_sphere(hit_obj, hp));

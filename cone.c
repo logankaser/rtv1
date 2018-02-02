@@ -6,7 +6,7 @@
 /*   By: lkaser <lkaser@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/02 14:24:37 by lkaser            #+#    #+#             */
-/*   Updated: 2018/02/02 14:53:55 by lkaser           ###   ########.fr       */
+/*   Updated: 2018/02/02 15:01:05 by lkaser           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,11 +62,11 @@ t_bool			intersect_cone(t_ray ray, t_obj *cone, double *dis)
 		quad_b(ray.d, diff, cone),
 		quad_c(diff, cone));
 	temp = (zeros[0] < zeros[1]) ? zeros[0] : zeros[1];
-    if (temp > 1e-6)
-    {
-        *dis = temp;
-        return (TRUE);
-    }
-    else
-        return (FALSE);
+	if (temp > 1e-6)
+	{
+		*dis = temp;
+		return (TRUE);
+	}
+	else
+		return (FALSE);
 }
