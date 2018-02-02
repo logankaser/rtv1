@@ -6,8 +6,7 @@
 #    By: lkaser <lkaser@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/20 13:52:57 by lkaser            #+#    #+#              #
-#    Updated: 2018/02/02 14:24:29 by lkaser           ###   ########.fr        #
-#    Updated: 2018/01/31 12:52:55 by lkaser           ###   ########.fr        #
+#    Updated: 2018/02/02 14:57:05 by lkaser           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +20,7 @@ OBJ = $(addsuffix .o, $(LIST))
 
 CPPFLAGS = -I libft/includes -I libmlx
 LDFLAGS = -L libft -lft -L libmlx -lmlx -framework OpenGL -framework AppKit
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -O3 -Wall -Wextra -Werror
 
 all: $(NAME)
 
