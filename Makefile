@@ -6,12 +6,12 @@
 #    By: lkaser <lkaser@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/20 13:52:57 by lkaser            #+#    #+#              #
-#    Updated: 2018/01/31 16:28:38 by dhill            ###   ########.fr        #
+#    Updated: 2018/02/02 14:57:05 by lkaser           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = RTv1
-LIST = rtv1 camera intersect normal \
+LIST = rtv1 camera intersect normal cylinder cone \
 buffer mlx matrix vector vector_op \
 helper parse parse_help
 

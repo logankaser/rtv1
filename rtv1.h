@@ -6,7 +6,7 @@
 /*   By: lkaser <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/18 11:03:56 by lkaser            #+#    #+#             */
-/*   Updated: 2018/01/31 16:37:56 by dhill            ###   ########.fr       */
+/*   Updated: 2018/02/02 15:12:37 by dhill            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # define WIN_X 1024
 # define WIN_Y 1024
 # define FOV 40
+# define CONE_ANGLE 30
 # include "wrapper.h"
 # include <fcntl.h>
 # include <math.h>
@@ -71,12 +72,17 @@ typedef	struct	s_rt
 */
 t_bool			intersect_sphere(t_ray ray, t_obj *obj, double *dis);
 t_bool			intersect_plane(t_ray ray, t_obj *obj, double *dis);
+t_bool			intersect_cylinder(t_ray ray, t_obj *obj, double *dis);
+t_bool			intersect_cone(t_ray ray, t_obj *obj, double *dis);
+void			quadratic_intersect(double *result, double a, double b, double c);
 
 /*
 ** normal.c
 */
 t_vec3  		normal_sphere(t_obj *hit_obj, t_vec3 hp);
 t_vec3  		normal_plane(t_obj *hit_obj, t_vec3 hp);
+t_vec3			normal_cylinder(t_obj *hit_obj, t_vec3 hp);
+t_vec3			normal_cone(t_obj *cone, t_vec3 hp);
 
 /*
 ** mlx.c

@@ -6,7 +6,7 @@
 /*   By: lkaser <lkaser@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 16:13:37 by lkaser            #+#    #+#             */
-/*   Updated: 2018/01/31 16:33:21 by dhill            ###   ########.fr       */
+/*   Updated: 2018/02/02 15:12:21 by dhill            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,21 +25,61 @@ unsigned	color_mult(unsigned c, const float x)
 	return (RGB(r, g, b));
 }
 
+t_bool		shadow(t_vec3 hp, t_vec3 light_dir, t_rt *rt, double *dis)
+{
+	t_list	*objs;
+	t_obj	*obj;
+	t_bool	shadowed;
+	t_ray	shadow_ray;
+
+	objs = rt->objs;
+	// shadow.origin = vadd(inter->origin, vmult(obj->norm, TYPE == 2 ? 0 : 1e-4));
+	shadow_ray.o = hp;
+	// d.dist = vdiff(light, shadow.origin);
+	// shadow.dir = normalize(d.dist);
+	shadow_ray.d = light_dir;
+	vec3_normalize(&shadow_ray.d);
+	while (objs)
+	{
+		shadowed = FALSE;
+		*dis = INFINITY;
+		obj = objs->content;
+		MATCH(obj->type == t_sphere, shadowed = intersect_sphere(shadow_ray, obj, dis));
+		OR(obj->type == t_cylinder, intersect_cylinder(shadow_ray, obj, dis));
+		OR(obj->type == t_cone, intersect_cone(shadow_ray, obj, dis));
+		if (shadowed && *dis < vec3_length(&light_dir) && *dis > 1e-4)
+			return (TRUE);
+		objs = objs->next;
+	}
+	return (FALSE);
+}
+
 unsigned	shade(t_ray ray, t_rt *rt, t_obj *hit_obj, double hit_dis)
 {
-	(void)rt;
 	t_vec3	normal;
+	double fac;
+	double dis;
+	t_vec3 hp;
+	t_vec3 light_dir;
 
 	vec3_mult(&ray.d, hit_dis);
-	t_vec3 hp = V3_PLUS_V3(ray.o, ray.d);
+	hp = V3_PLUS_V3(ray.o, ray.d);
 	vec3_normalize(&hp);
-	MATCH(hit_obj->type == t_sphere, normal = normal_sphere(hit_obj, hp));
-	OR(hit_obj->type == t_plane, normal = normal_plane(hit_obj, hp));
-	t_vec3 light_dir = V3_MINUS_V3(hp, V3(0, -7, 0));
-	double fac = (1 / 3.0) * V3_DOT(normal, light_dir);
-	if (fac < 0)
+	light_dir = V3_MINUS_V3(V3(0, 5, -1), hp);
+	if (!shadow(hp, light_dir, rt, &dis))
+	{
+		MATCH(hit_obj->type == t_sphere, normal = normal_sphere(hit_obj, hp));
+		OR(hit_obj->type == t_plane, normal = normal_plane(hit_obj, hp));
+		OR(hit_obj->type == t_cylinder, normal = normal_cylinder(hit_obj, hp));
+		OR(hit_obj->type == t_cone, normal = normal_cone(hit_obj, hp));
+		vec3_normalize(&light_dir);
+		fac = V3_DOT(normal, light_dir);
+		if (fac < 0)
 		fac = 0;
-	fac += 0.1;
+		fac += 0.1;
+	}
+	else
+		fac = 0;
 	if (fac > 1)
 		fac = 1;
 	return (color_mult(hit_obj->color, fac));
@@ -62,8 +102,8 @@ unsigned	trace(t_ray *ray, t_rt *rt)
 		obj = objs->content;
 		MATCH(obj->type == t_sphere, intersect_sphere(*ray, obj, &dis));
 		OR(obj->type == t_plane, intersect_plane(*ray, obj, &dis));
-		//OR(obj->type == t_cylinder, intersect_cylinder(ray, obj, &dis));
-		//OR(obj->type == t_cone, intersect_cone(ray, obj, &dis));
+		OR(obj->type == t_cylinder, intersect_cylinder(*ray, obj, &dis));
+		OR(obj->type == t_cone, intersect_cone(*ray, obj, &dis));
 		if (dis < INFINITY && dis < hit_dis)
 		{
 			hit_dis = dis;
