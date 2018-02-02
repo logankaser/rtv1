@@ -6,7 +6,7 @@
 /*   By: lkaser <lkaser@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/29 17:55:55 by lkaser            #+#    #+#             */
-/*   Updated: 2018/01/30 20:19:00 by lkaser           ###   ########.fr       */
+/*   Updated: 2018/02/01 21:31:41 by lkaser           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,21 +15,19 @@
 
 t_bool	intersect_sphere(t_ray ray, t_obj *obj, double *dis)
 {
-	double b;
-	double disc;
-	t_vec3 oc;
-	double t0;
-	double t1;
+	t_vec3	temp;
+	double	d[2];
+	double	disc;
 
-	oc = V3_MINUS_V3(ray.o, obj->position);
-	b = 2 * V3_DOT(oc, ray.d);
-	disc = b * b - 4 * (V3_DOT(oc, oc) - obj->radius * obj->radius);
-	if (disc < 0.00001)
+	temp = V3_MINUS_V3(ray.o, obj->position);
+	d[0] = V3_DOT(ray.d, temp);
+	disc = d[0] * d[0] - V3_DOT(temp, temp) + obj->radius * obj->radius;
+	if (disc < 1e-6)
 		return (FALSE);
 	disc = sqrt(disc);
-	t0 = -b - disc;
-	t1 = -b + disc;
-	*dis = (t0 < t1) ? t0 : t1;
+	d[1] = -d[0] - disc;
+	d[0] = -d[0] + disc;
+	*dis = (d[0] < d[1]) ? d[0] : d[1];
 	return (TRUE);
 }
 
@@ -51,4 +49,26 @@ t_bool	intersect_plane(t_ray ray, t_obj *obj, double *dis)
 		}
 	}
 	return (FALSE);
+}
+
+void	quadratic_intersect(double *result, double a, double b, double c)
+{
+	double disc;
+
+	disc = b * b - 4 * a * c;
+	if (disc < 0)
+	{
+		result[0] = INFINITY;
+		result[1] = INFINITY;
+		return ;
+	}
+	if (disc == 0)
+	{
+		result[0] = -b / (2 * a);
+		result[1] = INFINITY;
+		return ;
+	}
+	disc = sqrt(disc);
+	result[0] = (-b + disc) / (2 * a);
+	result[1] = (-b - disc) / (2 * a);
 }
