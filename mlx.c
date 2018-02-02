@@ -6,12 +6,21 @@
 /*   By: lkaser <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/02 15:44:27 by lkaser            #+#    #+#             */
-/*   Updated: 2018/01/29 19:09:16 by lkaser           ###   ########.fr       */
+/*   Updated: 2018/01/31 16:36:58 by dhill            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #define ASSERT_FAIL ft_puterror("Error initializing libmlx!");exit(1)
 #include "rtv1.h"
+
+int			close_window(t_rt *rt)
+{
+	mlx_destroy_window(rt->c->mlx, rt->c->win);
+	free(rt->c->mlx);
+	free(rt->c);
+	exit(0);
+	return (0);
+}
 
 int			hook_keys(int key, t_rt *rt)
 {
@@ -33,6 +42,6 @@ t_ctx		*context_new(void)
 	ASSERT(c->mlx = mlx_init());
 	ASSERT(c->win = mlx_new_window(c->mlx, WIN_X, WIN_Y, WINDOW_NAME));
 	c->buffs = NULL;
-    ft_lstpush(&c->buffs, buffer_new(c, WIN_X, WIN_Y), sizeof(t_buff));
+	ft_lstpush(&c->buffs, buffer_new(c, WIN_X, WIN_Y), sizeof(t_buff));
 	return (c);
 }

@@ -6,7 +6,8 @@
 /*   By: lkaser <lkaser@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 16:13:37 by lkaser            #+#    #+#             */
-/*   Updated: 2018/02/02 15:14:22 by lkaser           ###   ########.fr       */
+/*   Updated: 2018/02/02 15:15:00 by lkaser           ###   ########.fr       */
+/*   Updated: 2018/02/02 15:12:21 by dhill            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,6 +153,7 @@ int			main(int ac, char **av)
 	}
 	blit_all(rt.c);
 	mlx_hook(rt.c->win, 2, 0, hook_keys, rt.c);
+	mlx_hook(rt.c->win, 17, 0, close_window, rt.c);
 	mlx_loop(rt.c->mlx);
 	return (0);
 }

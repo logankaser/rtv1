@@ -6,7 +6,7 @@
 /*   By: lkaser <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/18 11:03:56 by lkaser            #+#    #+#             */
-/*   Updated: 2018/02/02 14:50:51 by lkaser           ###   ########.fr       */
+/*   Updated: 2018/02/02 15:12:37 by dhill            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,7 @@ t_vec3			normal_cone(t_obj *cone, t_vec3 hp);
 /*
 ** mlx.c
 */
+int				close_window(t_rt *rt);
 int				hook_keys(int key, t_rt *rt);
 void			look_at(t_vec3 from, t_vec3 to, t_mat *cam);
 
