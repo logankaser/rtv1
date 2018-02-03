@@ -6,7 +6,7 @@
 /*   By: lkaser <lkaser@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 16:13:37 by lkaser            #+#    #+#             */
-/*   Updated: 2018/02/02 16:22:43 by lkaser           ###   ########.fr       */
+/*   Updated: 2018/02/02 17:54:25 by lkaser           ###   ########.fr       */
 /*   Updated: 2018/02/02 15:12:21 by dhill            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -29,27 +29,29 @@ unsigned	color_mult(unsigned c, const float x)
 double		shadow(t_vec3 hp, t_rt *rt, t_vec3 normal)
 {
 	t_list	*objs;
-	t_obj	*obj;
-	t_bool	shadowed;
+	t_bool	shdw;
 	t_ray	shadow_ray;
 	double	dis;
+	double	light_dis;
 
 	objs = rt->objs;
 	vec3_mult(&normal, 1e-4);
-	vec3_plus_vec3(&hp, &normal);
-	shadow_ray.o = hp;
-	shadow_ray.d = V3_MINUS_V3(shadow_ray.o,
-		((t_obj*)rt->lights->content)->position);
+	shadow_ray.o = V3_PLUS_V3(hp, normal);
+	shadow_ray.d = V3_MINUS_V3(((t_obj*)rt->lights->content)->position,
+		shadow_ray.o);
+	light_dis = vec3_length(&shadow_ray.d);
 	vec3_normalize(&shadow_ray.d);
 	while (objs)
 	{
-		shadowed = FALSE;
+		shdw = FALSE;
 		dis = INFINITY;
-		obj = objs->content;
-		MATCH(obj->type == t_sphere, shadowed = intersect_sphere(shadow_ray, obj, &dis));
-		OR(obj->type == t_cylinder, shadowed = intersect_cylinder(shadow_ray, obj, &dis));
-		OR(obj->type == t_cone, shadowed = intersect_cone(shadow_ray, obj, &dis));
-		if (shadowed)
+		MATCH(((t_obj*)objs->content)->type == t_sphere,
+			shdw = intersect_sphere(shadow_ray, objs->content, &dis));
+		OR(((t_obj*)objs->content)->type == t_cylinder,
+			shdw = intersect_cylinder(shadow_ray, objs->content, &dis));
+		OR(((t_obj*)objs->content)->type == t_cone,
+			shdw = intersect_cone(shadow_ray, objs->content, &dis));
+		if (shdw && dis < light_dis)
 			return (0.2);
 		objs = objs->next;
 	}

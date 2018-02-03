@@ -6,7 +6,7 @@
 /*   By: lkaser <lkaser@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/29 17:55:55 by lkaser            #+#    #+#             */
-/*   Updated: 2018/02/02 15:59:59 by lkaser           ###   ########.fr       */
+/*   Updated: 2018/02/02 17:41:40 by lkaser           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ t_vec3	normal_cone(t_obj *cone, t_vec3 hp)
 
 	normal = V3_MINUS_V3(hp, cone->position);
 	side_len = sqrt(V3_DOT(normal, normal));
-	side_len /= cos(CONE_ANGLE * M_PI / 180);
+	side_len /= cos(cone->radius);
 	if (V3_DOT(normal, cone->rotation) < 0)
 		side_len = -side_len;
 	normal.x = cone->position.x + side_len * cone->rotation.x;

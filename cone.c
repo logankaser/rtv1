@@ -6,7 +6,7 @@
 /*   By: lkaser <lkaser@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/02 14:24:37 by lkaser            #+#    #+#             */
-/*   Updated: 2018/02/02 15:01:05 by lkaser           ###   ########.fr       */
+/*   Updated: 2018/02/02 17:41:25 by lkaser           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static double	quad_a(t_vec3 dir, t_obj *cone)
 	double cos_sq;
 
 	dot = V3_DOT(dir, cone->rotation);
-	cos_sq = cos(CONE_ANGLE * M_PI / 180);
+	cos_sq = cos(cone->radius);
 	return (dot * dot - cos_sq * cos_sq);
 }
 
@@ -32,7 +32,7 @@ static double	quad_b(t_vec3 dir, t_vec3 diff, t_obj *cone)
 	dot1 = V3_DOT(dir, cone->rotation);
 	dot2 = V3_DOT(diff, cone->rotation);
 	dot3 = V3_DOT(dir, diff);
-	cos_sq = cos(CONE_ANGLE * M_PI / 180);
+	cos_sq = cos(cone->radius);
 	cos_sq *= cos_sq;
 	return (2 * (dot1 * dot2 - dot3 * cos_sq));
 }
@@ -45,7 +45,7 @@ static double	quad_c(t_vec3 diff, t_obj *cone)
 
 	dot1 = V3_DOT(diff, cone->rotation);
 	dot2 = V3_DOT(diff, diff);
-	cos_sq = cos(CONE_ANGLE * M_PI / 180);
+	cos_sq = cos(cone->radius);
 	cos_sq *= cos_sq;
 	return (dot1 * dot1 - dot2 * cos_sq);
 }
