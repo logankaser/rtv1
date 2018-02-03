@@ -6,7 +6,7 @@
 /*   By: dhill <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/30 19:43:58 by dhill             #+#    #+#             */
-/*   Updated: 2018/02/02 17:37:13 by dhill            ###   ########.fr       */
+/*   Updated: 2018/02/02 17:43:37 by dhill            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,17 @@ void	parse_cone_cylinder(char **split, t_obj *obj)
 {
 	if (!split[8] || (split[8] && split[9]))
 		ft_err("Improper cone or cylinder format.");
-	obj->type = t_cylinder;
+	if (ft_strequ(split[0]) == "cone")
+	{
+		obj->type = t_cone;
+		obj->radius = ft_atof(split[7]) * M_PI / 180;
+	}
+	else
+	{
+		obj->type = t_cylinder;
+		obj->radius = ft_atof(split[7]);
+	}
 	get_vec3(split[4], split[5], split[6], &obj->rotation);
 	vec3_normalize(&obj->rotation);
-	obj->radius = ft_atof(split[7]);
 	obj->color = ft_htou(split[8]);
 }
