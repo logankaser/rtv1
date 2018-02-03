@@ -6,7 +6,7 @@
 /*   By: lkaser <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/18 11:03:56 by lkaser            #+#    #+#             */
-/*   Updated: 2018/02/02 16:27:29 by dhill            ###   ########.fr       */
+/*   Updated: 2018/02/02 17:37:27 by dhill            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,8 +97,8 @@ void			look_at(t_vec3 from, t_vec3 to, t_mat *cam);
 void			parse(char *file, t_rt *rt);
 void			get_vec3(char *p1, char *p2, char *p3, t_vec3 *var);
 void			parse_sphere(char **split, t_obj *obj);
-void			parse_cone_plane(char **split, t_obj *obj);
-void			parse_cylinder(char **split, t_obj *obj);
+void			parse_plane(char **split, t_obj *obj);
+void			parse_cone_cylinder(char **split, t_obj *obj);
 
 /*
 ** helper.c

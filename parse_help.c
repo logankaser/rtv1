@@ -6,7 +6,7 @@
 /*   By: dhill <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/30 19:43:58 by dhill             #+#    #+#             */
-/*   Updated: 2018/02/02 17:31:08 by dhill            ###   ########.fr       */
+/*   Updated: 2018/02/02 17:37:13 by dhill            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,20 +28,20 @@ void	parse_sphere(char **split, t_obj *obj)
 	obj->color = ft_htou(split[5]);
 }
 
-void	parse_cone_plane(char **split, t_obj *obj)
+void	parse_plane(char **split, t_obj *obj)
 {
 	if (!split[7] || (split[7] && split[8]))
-		ft_err("Improper cone or plane format.");
-	obj->type = ft_strequ(split[0], "cone") == 1 ? t_cone : t_plane;
+		ft_err("Improper plane format.");
+	obj->type = t_plane;
 	get_vec3(split[4], split[5], split[6], &obj->rotation);
 	vec3_normalize(&obj->rotation);
 	obj->color = ft_htou(split[7]);
 }
 
-void	parse_cylinder(char **split, t_obj *obj)
+void	parse_cone_cylinder(char **split, t_obj *obj)
 {
 	if (!split[8] || (split[8] && split[9]))
-		ft_err("Improper cylinder format.");
+		ft_err("Improper cone or cylinder format.");
 	obj->type = t_cylinder;
 	get_vec3(split[4], split[5], split[6], &obj->rotation);
 	vec3_normalize(&obj->rotation);
