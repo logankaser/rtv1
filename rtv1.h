@@ -6,7 +6,7 @@
 /*   By: lkaser <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/18 11:03:56 by lkaser            #+#    #+#             */
-/*   Updated: 2018/02/02 15:12:37 by dhill            ###   ########.fr       */
+/*   Updated: 2018/02/02 16:27:29 by dhill            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,7 @@ void			parse_cylinder(char **split, t_obj *obj);
 /*
 ** helper.c
 */
+void			ft_err(char *s);
 unsigned int	ft_htou(const char *str);
 int				ft_iswhitespace(char c);
 #endif
