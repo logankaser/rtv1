@@ -6,7 +6,7 @@
 /*   By: lkaser <lkaser@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/01 14:16:57 by lkaser            #+#    #+#             */
-/*   Updated: 2018/02/02 14:51:40 by lkaser           ###   ########.fr       */
+/*   Updated: 2018/02/02 15:01:27 by lkaser           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ static double	quad_c(t_vec3 diff, t_obj *cyl)
 	return (V3_DOT(temp, temp) - cyl->radius * cyl->radius);
 }
 
-t_bool	intersect_cylinder(t_ray ray, t_obj *cyl, double *dis)
+t_bool			intersect_cylinder(t_ray ray, t_obj *cyl, double *dis)
 {
 	t_vec3	diff;
 	double	zeros[2];
