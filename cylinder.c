@@ -6,7 +6,7 @@
 /*   By: lkaser <lkaser@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/01 14:16:57 by lkaser            #+#    #+#             */
-/*   Updated: 2018/02/02 15:01:27 by lkaser           ###   ########.fr       */
+/*   Updated: 2018/02/02 18:55:32 by lkaser           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static double	quad_a(t_vec3 dir, t_obj *cyl)
 	return (V3_DOT(temp, temp));
 }
 
-static double	quad_b(t_vec3 diff, t_vec3 dir, t_obj *cyl)
+static double	quad_b(t_vec3 dir, t_obj *cyl, t_vec3 diff)
 {
 	t_vec3 temp1;
 	t_vec3 temp2;
@@ -44,7 +44,7 @@ static double	quad_b(t_vec3 diff, t_vec3 dir, t_obj *cyl)
 	return (2 * V3_DOT(temp2, temp1));
 }
 
-static double	quad_c(t_vec3 diff, t_obj *cyl)
+static double	quad_c(t_obj *cyl, t_vec3 diff)
 {
 	t_vec3 temp;
 	double dot;
@@ -66,8 +66,8 @@ t_bool			intersect_cylinder(t_ray ray, t_obj *cyl, double *dis)
 	diff = V3_MINUS_V3(ray.o, cyl->position);
 	quadratic_intersect(zeros,
 		quad_a(ray.d, cyl),
-		quad_b(diff, ray.d, cyl),
-		quad_c(diff, cyl));
+		quad_b(ray.d, cyl, diff),
+		quad_c(cyl, diff));
 	temp = (zeros[0] < zeros[1]) ? zeros[0] : zeros[1];
 	if (temp > 1e-6)
 	{

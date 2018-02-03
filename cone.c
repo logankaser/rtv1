@@ -6,7 +6,7 @@
 /*   By: lkaser <lkaser@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/02 14:24:37 by lkaser            #+#    #+#             */
-/*   Updated: 2018/02/02 17:41:25 by lkaser           ###   ########.fr       */
+/*   Updated: 2018/02/02 18:53:59 by lkaser           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static double	quad_a(t_vec3 dir, t_obj *cone)
 	return (dot * dot - cos_sq * cos_sq);
 }
 
-static double	quad_b(t_vec3 dir, t_vec3 diff, t_obj *cone)
+static double	quad_b(t_vec3 dir, t_obj *cone, t_vec3 diff)
 {
 	double dot1;
 	double dot2;
@@ -37,7 +37,7 @@ static double	quad_b(t_vec3 dir, t_vec3 diff, t_obj *cone)
 	return (2 * (dot1 * dot2 - dot3 * cos_sq));
 }
 
-static double	quad_c(t_vec3 diff, t_obj *cone)
+static double	quad_c(t_obj *cone, t_vec3 diff)
 {
 	double dot1;
 	double dot2;
@@ -59,8 +59,8 @@ t_bool			intersect_cone(t_ray ray, t_obj *cone, double *dis)
 	diff = V3_MINUS_V3(ray.o, cone->position);
 	quadratic_intersect(zeros,
 		quad_a(ray.d, cone),
-		quad_b(ray.d, diff, cone),
-		quad_c(diff, cone));
+		quad_b(ray.d, cone, diff),
+		quad_c(cone, diff));
 	temp = (zeros[0] < zeros[1]) ? zeros[0] : zeros[1];
 	if (temp > 1e-6)
 	{

@@ -6,7 +6,7 @@
 /*   By: lkaser <lkaser@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 16:13:37 by lkaser            #+#    #+#             */
-/*   Updated: 2018/02/02 18:07:21 by lkaser           ###   ########.fr       */
+/*   Updated: 2018/02/02 18:48:18 by lkaser           ###   ########.fr       */
 /*   Updated: 2018/02/02 15:12:21 by dhill            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -51,8 +51,8 @@ double		shadow(t_vec3 hp, t_rt *rt, t_vec3 normal)
 			shdw = intersect_cylinder(shadow_ray, objs->content, &dis));
 		OR(((t_obj*)objs->content)->type == t_cone,
 			shdw = intersect_cone(shadow_ray, objs->content, &dis));
-		if (shdw && dis < light_dis)
-			return (0.2);
+		if (shdw && dis < light_dis && dis > 1e-6)
+			return (0.1);
 		objs = objs->next;
 	}
 	return (1);
@@ -69,10 +69,10 @@ unsigned	shade(t_ray ray, t_rt *rt, t_obj *hit_obj, double hit_dis)
 	MATCH(hit_obj->type == t_sphere, normal = normal_sphere(hit_obj, hp));
 	OR(hit_obj->type == t_plane, normal = normal_plane(hit_obj, hp));
 	OR(hit_obj->type == t_cylinder, normal = normal_cylinder(hit_obj, hp));
-	OR(hit_obj->type == t_cone, normal = normal_cone(hit_obj, hp));
+	OTHERWISE(normal = normal_cone(hit_obj, hp));
 	light_dir = V3_MINUS_V3(((t_light*)rt->lights->content)->position, hp);
 	vec3_normalize(&light_dir);
-	fac = V3_DOT(normal, light_dir);
+	fac = fabs(V3_DOT(normal, light_dir));
 	fac *= shadow(hp, rt, normal);
 	if (fac < 0)
 		fac = 0;
