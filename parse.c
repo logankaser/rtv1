@@ -6,7 +6,7 @@
 /*   By: dhill <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 22:14:37 by dhill             #+#    #+#             */
-/*   Updated: 2018/01/31 12:48:54 by dhill            ###   ########.fr       */
+/*   Updated: 2018/02/02 17:30:10 by dhill            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ void	parse_camera_struct(char **split, t_rt *rt)
 	t_vec3	from;
 	t_vec3	to;
 
+	if (!split[6] || (split[6] && split[7]))
+		ft_err("Improper camera format.");
 	get_vec3(split[1], split[2], split[3], &from);
 	get_vec3(split[4], split[5], split[6], &to);
 	look_at(from, to, &rt->cam);
@@ -33,6 +35,8 @@ void	parse_light_list(char **split, t_rt *rt)
 {
 	t_light *light;
 
+	if (!split[4] || (split[4] && split[5]))
+		ft_err("Improper light format.");
 	ASSERT((light = malloc(sizeof(t_light))));
 	get_vec3(split[1], split[2], split[3], &light->position);
 	light->intensity = ft_atof(split[4]);
