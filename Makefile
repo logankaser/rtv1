@@ -6,7 +6,7 @@
 #    By: lkaser <lkaser@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/20 13:52:57 by lkaser            #+#    #+#              #
-#    Updated: 2018/02/03 16:34:22 by lkaser           ###   ########.fr        #
+#    Updated: 2018/02/03 17:15:27 by lkaser           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,8 +15,8 @@ LIST = rtv1 camera intersect normal cylinder cone \
 buffer mlx matrix vector vector_op \
 helper parse parse_help
 
-SRC = $(addsuffix .c, $(LIST))
-OBJ = $(addsuffix .o, $(LIST))
+SRC = $(addsuffix .c, $(addprefix src/, $(LIST)))
+OBJ = $(addsuffix .o, $(addprefix src/, $(LIST)))
 
 CPPFLAGS = -I libft/includes -I libmlx
 LDFLAGS = -L libft -lft -L libmlx -lmlx -framework OpenGL -framework AppKit
