@@ -6,39 +6,23 @@
 /*   By: lkaser <lkaser@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 16:13:37 by lkaser            #+#    #+#             */
-/*   Updated: 2018/02/03 16:20:35 by lkaser           ###   ########.fr       */
-/*   Updated: 2018/02/02 15:12:21 by dhill            ###   ########.fr       */
+/*   Updated: 2018/02/03 17:04:13 by lkaser           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #define ASSERT_FAIL ft_puterror("Exception!\n");exit(1)
 #include "rtv1.h"
 
-unsigned	color_mult(unsigned c, const float x)
+double		shadow(t_vec3 hp, t_list *objs, t_light *light, t_vec3 normal)
 {
-	unsigned char r;
-	unsigned char g;
-	unsigned char b;
-
-	b = (c & 0xFF) * x;
-	g = (c >> 8 & 0xFF) * x;
-	r = (c >> 16 & 0xFF) * x;
-	return (RGB(r, g, b));
-}
-
-double		shadow(t_vec3 hp, t_rt *rt, t_vec3 normal)
-{
-	t_list	*objs;
 	t_bool	shdw;
 	t_ray	shadow_ray;
 	double	dis;
 	double	light_dis;
 
-	objs = rt->objs;
 	vec3_mult(&normal, 1e-4);
 	shadow_ray.o = V3_PLUS_V3(hp, normal);
-	shadow_ray.d = V3_MINUS_V3(((t_light*)rt->lights->content)->position,
-		shadow_ray.o);
+	shadow_ray.d = V3_MINUS_V3(light->position, shadow_ray.o);
 	light_dis = vec3_length(&shadow_ray.d);
 	vec3_normalize(&shadow_ray.d);
 	while (objs)
@@ -61,9 +45,10 @@ double		shadow(t_vec3 hp, t_rt *rt, t_vec3 normal)
 unsigned	shade(t_ray ray, t_rt *rt, t_obj *hit_obj, double hit_dis)
 {
 	t_vec3	normal;
-	double fac;
-	t_vec3 hp;
-	t_vec3 light_dir;
+	double	fac;
+	t_vec3	hp;
+	t_vec3	light_dir;
+
 	vec3_mult(&ray.d, hit_dis);
 	hp = V3_PLUS_V3(ray.o, ray.d);
 	MATCH(hit_obj->type == t_sphere, normal = normal_sphere(hit_obj, hp));
@@ -73,7 +58,7 @@ unsigned	shade(t_ray ray, t_rt *rt, t_obj *hit_obj, double hit_dis)
 	light_dir = V3_MINUS_V3(((t_light*)rt->lights->content)->position, hp);
 	vec3_normalize(&light_dir);
 	fac = fabs(V3_DOT(normal, light_dir));
-	fac *= shadow(hp, rt, normal);
+	fac *= shadow(hp, rt->objs, rt->lights->content, normal);
 	if (fac < 0)
 		fac = 0;
 	fac += 0.1;

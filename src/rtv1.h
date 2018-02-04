@@ -6,7 +6,7 @@
 /*   By: lkaser <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/18 11:03:56 by lkaser            #+#    #+#             */
-/*   Updated: 2018/02/03 18:02:10 by dhill            ###   ########.fr       */
+/*   Updated: 2018/02/03 18:19:49 by dhill            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,13 +74,14 @@ t_bool			intersect_sphere(t_ray ray, t_obj *obj, double *dis);
 t_bool			intersect_plane(t_ray ray, t_obj *obj, double *dis);
 t_bool			intersect_cylinder(t_ray ray, t_obj *obj, double *dis);
 t_bool			intersect_cone(t_ray ray, t_obj *obj, double *dis);
-void			quadratic_intersect(double *result, double a, double b, double c);
+void			quadratic_intersect(double *result,
+					double a, double b, double c);
 
 /*
 ** normal.c
 */
-t_vec3  		normal_sphere(t_obj *hit_obj, t_vec3 hp);
-t_vec3  		normal_plane(t_obj *hit_obj, t_vec3 hp);
+t_vec3			normal_sphere(t_obj *hit_obj, t_vec3 hp);
+t_vec3			normal_plane(t_obj *hit_obj, t_vec3 hp);
 t_vec3			normal_cylinder(t_obj *hit_obj, t_vec3 hp);
 t_vec3			normal_cone(t_obj *cone, t_vec3 hp);
 
@@ -106,4 +107,5 @@ void			parse_cone_cylinder(char **split, t_obj *obj);
 void			ft_err(char *s);
 unsigned int	ft_htou(const char *str);
 int				ft_iswhitespace(char c);
+unsigned		color_mult(unsigned c, const float x);
 #endif
