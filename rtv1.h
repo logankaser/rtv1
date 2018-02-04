@@ -6,7 +6,7 @@
 /*   By: lkaser <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/18 11:03:56 by lkaser            #+#    #+#             */
-/*   Updated: 2018/02/02 17:37:27 by dhill            ###   ########.fr       */
+/*   Updated: 2018/02/03 18:02:10 by dhill            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,9 @@ typedef struct	s_ray
 
 typedef	enum	e_type
 {
-	t_sphere = 1,
-	t_plane,
+	t_plane = 1,
 	t_cylinder,
+	t_sphere,
 	t_cone
 }				t_type;
 
