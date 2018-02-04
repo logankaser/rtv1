@@ -6,7 +6,7 @@
 /*   By: lkaser <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/02 15:44:27 by lkaser            #+#    #+#             */
-/*   Updated: 2018/01/30 17:26:39 by lkaser           ###   ########.fr       */
+/*   Updated: 2018/02/03 16:20:24 by lkaser           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,10 +50,10 @@ void	vec3_normalize(t_vec3 *v)
 {
 	double len;
 
-	len = vec3_length(v);
+	len = v->x * v->x + v->y * v->y + v->z * v->z;
 	if (len > 0)
 	{
-		len = 1 / len;
+		len = 1 / sqrt(len);
 		v->x *= len;
 		v->y *= len;
 		v->z *= len;
@@ -62,10 +62,9 @@ void	vec3_normalize(t_vec3 *v)
 
 t_vec3	vec3_cross_product(t_vec3 a, t_vec3 b)
 {
-	t_vec3	r;
-
-	r.x = a.y * b.z - a.z * b.y;
-	r.y = a.z * b.y - a.x * b.z;
-	r.z = a.x * b.y - a.y * b.x;
-	return (r);
+	return (V3(
+		a.y * b.z - a.z * b.y,
+		a.z * b.x - a.x * b.z,
+		a.x * b.y - a.y * b.x
+	));
 }
