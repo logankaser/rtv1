@@ -6,7 +6,7 @@
 /*   By: lkaser <lkaser@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 16:13:37 by lkaser            #+#    #+#             */
-/*   Updated: 2018/02/03 17:04:13 by lkaser           ###   ########.fr       */
+/*   Updated: 2018/02/03 17:45:09 by lkaser           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ double		shadow(t_vec3 hp, t_list *objs, t_light *light, t_vec3 normal)
 		OR(((t_obj*)objs->content)->type == t_cone,
 			shdw = intersect_cone(shadow_ray, objs->content, &dis));
 		if (shdw && dis < light_dis && dis > 1e-6)
-			return (0.1);
+			return (0);
 		objs = objs->next;
 	}
 	return (1);
