@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   helper.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dhill <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: dhill <dhill@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/23 22:59:02 by dhill             #+#    #+#             */
-/*   Updated: 2018/01/31 11:52:57 by dhill            ###   ########.fr       */
+/*   Created: 2018/02/03 16:51:09 by dhill             #+#    #+#             */
+/*   Updated: 2018/02/03 16:52:34 by lkaser           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
 
-int		ft_iswhitespace(char c)
+int			ft_iswhitespace(char c)
 {
 	if (c == ' ' || c == '\n' || c == '\t' || c == '\r' || c == '\v'
 			|| c == '\f')
@@ -20,7 +20,7 @@ int		ft_iswhitespace(char c)
 	return (0);
 }
 
-unsigned int    ft_htou(const char *str)
+unsigned	ft_htou(const char *str)
 {
 	unsigned int	i;
 	unsigned int	out;
@@ -45,4 +45,16 @@ unsigned int    ft_htou(const char *str)
 	}
 	else
 		return (ft_atoi(str));
+}
+
+unsigned	color_mult(unsigned c, const float x)
+{
+	unsigned char r;
+	unsigned char g;
+	unsigned char b;
+
+	b = (c & 0xFF) * x;
+	g = (c >> 8 & 0xFF) * x;
+	r = (c >> 16 & 0xFF) * x;
+	return (RGB(r, g, b));
 }

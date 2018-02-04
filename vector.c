@@ -6,7 +6,7 @@
 /*   By: lkaser <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/02 15:44:27 by lkaser            #+#    #+#             */
-/*   Updated: 2018/02/03 16:20:24 by lkaser           ###   ########.fr       */
+/*   Updated: 2018/02/03 17:05:00 by lkaser           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,5 @@ t_vec3	vec3_cross_product(t_vec3 a, t_vec3 b)
 	return (V3(
 		a.y * b.z - a.z * b.y,
 		a.z * b.x - a.x * b.z,
-		a.x * b.y - a.y * b.x
-	));
+		a.x * b.y - a.y * b.x));
 }

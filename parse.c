@@ -6,7 +6,7 @@
 /*   By: dhill <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 22:14:37 by dhill             #+#    #+#             */
-/*   Updated: 2018/02/02 17:38:16 by dhill            ###   ########.fr       */
+/*   Updated: 2018/02/03 17:08:56 by lkaser           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,20 +45,21 @@ void	parse_light_list(char **split, t_rt *rt)
 
 void	parse_object_list(char **split, t_rt *rt)
 {
-	t_obj   *obj;
+	t_obj	*obj;
 
 	ASSERT((obj = malloc(sizeof(t_obj))));
 	get_vec3(split[1], split[2], split[3], &obj->position);
 	if (ft_strequ(split[0], "sphere") == 1)
 		parse_sphere(split, obj);
-	else if (ft_strequ(split[0], "cone") == 1 || ft_strequ(split[0], "cylinder") == 1)
+	else if (ft_strequ(split[0], "cone") == 1
+	|| ft_strequ(split[0], "cylinder") == 1)
 		parse_cone_cylinder(split, obj);
 	else if (ft_strequ(split[0], "plane") == 1)
 		parse_plane(split, obj);
 	ft_lstpush(&rt->objs, obj, sizeof(obj));
 }
 
-void	parse(char	*file, t_rt *rt)
+void	parse(char *file, t_rt *rt)
 {
 	int		fd;
 	char	**split;
