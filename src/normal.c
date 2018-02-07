@@ -6,7 +6,7 @@
 /*   By: lkaser <lkaser@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/29 17:55:55 by lkaser            #+#    #+#             */
-/*   Updated: 2018/02/02 18:27:20 by lkaser           ###   ########.fr       */
+/*   Updated: 2018/02/06 20:31:46 by lkaser           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ t_vec3	normal_cylinder(t_obj *cyl, t_vec3 hp)
 	normal.x = cyl->position.x + cyl->rotation.x * dis;
 	normal.y = cyl->position.y + cyl->rotation.y * dis;
 	normal.z = cyl->position.z + cyl->rotation.z * dis;
-	normal = V3_MINUS_V3(normal, hp);
+	normal = V3_MINUS_V3(hp, normal);
 	vec3_normalize(&normal);
 	return (normal);
 }

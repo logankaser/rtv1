@@ -6,7 +6,7 @@
 /*   By: lkaser <lkaser@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 16:13:37 by lkaser            #+#    #+#             */
-/*   Updated: 2018/02/03 17:45:09 by lkaser           ###   ########.fr       */
+/*   Updated: 2018/02/06 20:33:37 by lkaser           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ double		shadow(t_vec3 hp, t_list *objs, t_light *light, t_vec3 normal)
 			return (0);
 		objs = objs->next;
 	}
-	return (1);
+	return (1 / (sqrt(light_dis) * (1 / light->intensity)));
 }
 
 unsigned	shade(t_ray ray, t_rt *rt, t_obj *hit_obj, double hit_dis)
