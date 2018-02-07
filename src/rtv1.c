@@ -6,7 +6,7 @@
 /*   By: lkaser <lkaser@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 16:13:37 by lkaser            #+#    #+#             */
-/*   Updated: 2018/02/06 20:33:37 by lkaser           ###   ########.fr       */
+/*   Updated: 2018/02/06 20:49:10 by lkaser           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ double		shadow(t_vec3 hp, t_list *objs, t_light *light, t_vec3 normal)
 	double	dis;
 	double	light_dis;
 
-	vec3_mult(&normal, 1e-4);
+	vec3_mult(&normal, 1e-6);
 	shadow_ray.o = V3_PLUS_V3(hp, normal);
 	shadow_ray.d = V3_MINUS_V3(light->position, shadow_ray.o);
 	light_dis = vec3_length(&shadow_ray.d);
