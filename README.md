@@ -1,6 +1,8 @@
 # 42 RTv1
 A simple raytracer in C, with diffusion and shadows.
 
+![Screenshot](https://raw.githubusercontent.com/logankaser/rtv1/master/example.png)
+
 Scenes are descripbed by a simple format:  
 camera from<val, val, val> to<val, val ,val>  
 For example:
