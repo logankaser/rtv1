@@ -6,7 +6,7 @@
 /*   By: lkaser <lkaser@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/12 19:30:04 by lkaser            #+#    #+#             */
-/*   Updated: 2017/10/12 15:46:50 by lkaser           ###   ########.fr       */
+/*   Updated: 2018/06/20 22:20:58 by lkaser           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ char			**ft_strsplit(const char *str, const char d)
 		while (*str == d)
 			++str;
 		w_size = word_size(str, d);
-		split_words[w] = (char *)malloc(w_size);
+		split_words[w] = (char *)malloc(w_size + 1);
 		NULL_GUARD(split_words[w]);
 		split_words[w][w_size] = '\0';
 		chr = 0;

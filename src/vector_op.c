@@ -6,7 +6,7 @@
 /*   By: lkaser <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/02 15:44:27 by lkaser            #+#    #+#             */
-/*   Updated: 2018/01/29 21:41:35 by lkaser           ###   ########.fr       */
+/*   Updated: 2018/02/15 21:08:44 by lkaser           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,4 +39,9 @@ void	vec3_div(t_vec3 *v, double d)
 	v->x /= d;
 	v->y /= d;
 	v->z /= d;
+}
+
+double	vec3_dot(t_vec3 *a, t_vec3 *b)
+{
+	return (a->x * b->x + a->y * b->y + a->z * b->z);
 }

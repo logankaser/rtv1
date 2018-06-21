@@ -6,7 +6,7 @@
 /*   By: lkaser <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/02 15:44:27 by lkaser            #+#    #+#             */
-/*   Updated: 2018/01/22 14:49:20 by lkaser           ###   ########.fr       */
+/*   Updated: 2018/06/20 22:43:32 by lkaser           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,6 @@ t_buff		*buffer_new(t_ctx *c, unsigned x, unsigned y)
 	b->x = x;
 	b->y = y;
 	return (b);
-}
-
-void		buffer_del(t_buff *b)
-{
-	mlx_destroy_image(b->ctx->mlx, b->obj);
-	free(b);
 }
 
 void		buffer_point(t_buff *b, unsigned x, unsigned y, unsigned color)

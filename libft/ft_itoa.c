@@ -6,49 +6,56 @@
 /*   By: lkaser <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/21 14:38:16 by lkaser            #+#    #+#             */
-/*   Updated: 2017/12/21 20:09:57 by lkaser           ###   ########.fr       */
+/*   Updated: 2017/09/21 17:59:13 by lkaser           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include <stdio.h>
+#include <stdlib.h>
 
-static unsigned	digits(int nbr)
+static int		digits(int nbr)
 {
-	unsigned len;
+	int count;
 
-	len = 1 + nbr < 0;
-	while (nbr)
+	count = nbr < 0 ? 2 : 1;
+	while (nbr >= 10 || nbr <= -10)
 	{
 		nbr /= 10;
-		++len;
+		++count;
 	}
-	return (len);
+	return (count);
 }
 
-static void		fill_str(long nbr, char *str, unsigned *i)
+static void		int_to_str(int nbr, char *str, int *count)
 {
 	if (nbr >= 10 || nbr <= -10)
 	{
-		fill_str(nbr / 10, str, i);
-		fill_str(nbr % 10, str, i);
+		int_to_str(nbr / 10, str, count);
+		int_to_str(nbr % 10, str, count);
 	}
 	else
-		str[(*i)++] = '0' + (nbr < 0 ? -nbr : nbr);
+	{
+		str[*count] = nbr < 0 ? (nbr * -1) + 48 : nbr + 48;
+		*count += 1;
+	}
 }
 
-char			*ft_itoa(long nbr)
+char			*ft_itoa(int nbr)
 {
-	unsigned	len;
-	char		*out;
-	unsigned	i;
+	char	*out;
+	int		size;
+	int		count;
 
-	len = digits(nbr);
-	NULL_GUARD(out = malloc(len + 1));
-	i = 0;
+	size = digits(nbr) + 1;
+	out = (char *)malloc(sizeof(char) * size);
+	if (!out)
+		return (NULL);
+	count = 0;
 	if (nbr < 0)
-		out[i++] = '-';
-	fill_str(nbr, out, &i);
-	out[len] = '\0';
+	{
+		out[0] = '-';
+		++count;
+	}
+	int_to_str(nbr, out, &count);
+	out[size - 1] = '\0';
 	return (out);
 }

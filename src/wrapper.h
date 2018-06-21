@@ -6,7 +6,7 @@
 /*   By: lkaser <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/18 11:03:56 by lkaser            #+#    #+#             */
-/*   Updated: 2018/01/30 17:12:59 by lkaser           ###   ########.fr       */
+/*   Updated: 2018/02/15 21:06:56 by lkaser           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,5 +88,6 @@ void				vec3_minus_vec3(t_vec3 *a, t_vec3 *b);
 void				vec3_plus_vec3(t_vec3 *a, t_vec3 *b);
 void				vec3_mult(t_vec3 *v, double m);
 void				vec3_div(t_vec3 *v, double d);
+double				vec3_dot(t_vec3 *a, t_vec3 *b);
 
 #endif

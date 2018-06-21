@@ -1,19 +1,18 @@
-# **************************************************************************** #
-#                                                                              #
+# **************************************************************************** # #                                                                              #
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
 #    By: lkaser <lkaser@student.42.us.org>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/20 13:52:57 by lkaser            #+#    #+#              #
-#    Updated: 2018/02/02 18:12:25 by lkaser           ###   ########.fr        #
+#    Updated: 2018/04/19 22:45:23 by lkaser           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 
 NAME = libft.a
-LIST = ft_atoi \
-ft_atof \
+LIST = ft_atof \
+ft_atoi \
 ft_bzero \
 ft_in_range \
 ft_isalnum \
@@ -32,6 +31,7 @@ ft_lstlen \
 ft_lstmap \
 ft_lstnew \
 ft_lstpush \
+ft_lstpop \
 ft_lstrm \
 ft_memalloc \
 ft_memccpy \
@@ -53,6 +53,7 @@ ft_putnbr_fd \
 ft_putstr \
 ft_putstr_fd \
 ft_putstrarray \
+ft_qsort \
 ft_strcat \
 ft_strchr \
 ft_strclr \
@@ -61,6 +62,7 @@ ft_strcpy \
 ft_strdel \
 ft_strdup \
 ft_strequ \
+ft_string \
 ft_striter \
 ft_striteri \
 ft_strjoin \
@@ -86,21 +88,24 @@ ft_tolower \
 ft_toupper \
 ft_utoa_base \
 ft_wchar_utf8 \
-get_next_line
+ft_vector \
+get_next_line \
+ft_printf \
+format
 
 SRC = $(addsuffix .c, $(LIST))
 OBJ = $(addsuffix .o, $(LIST))
 
-CPPFLAGS = -I includes
-CFLAGS = -O3 -Wall -Wextra -Werror
+CPPFLAGS = -g -flto -O3 -march=native -Wall -Wextra -Werror -I includes/
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	@ar rcs $(NAME) $(OBJ) && echo "\033[32;1mlibft.a Created\033[0m"
+	@ar rcs $@ $(OBJ)
+	@printf "\e[32;1mlibft.a Created\e[0m\n"
 
 $(OBJ): $(SRC)
-	@gcc $(CFLAGS) $(CPPFLAGS) -c $(SRC)
+	@gcc $(CPPFLAGS) -c $(SRC)
 
 clean:
 	@rm -f $(OBJ)

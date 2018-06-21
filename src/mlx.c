@@ -6,7 +6,7 @@
 /*   By: lkaser <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/02 15:44:27 by lkaser            #+#    #+#             */
-/*   Updated: 2018/01/31 16:36:58 by dhill            ###   ########.fr       */
+/*   Updated: 2018/06/20 22:44:10 by lkaser           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 int			close_window(t_rt *rt)
 {
+	ft_lstdel(&rt->c->buffs, NULL);
 	mlx_destroy_window(rt->c->mlx, rt->c->win);
 	free(rt->c->mlx);
 	free(rt->c);

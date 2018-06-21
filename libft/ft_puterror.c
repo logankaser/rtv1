@@ -15,4 +15,5 @@
 void	ft_puterror(char const *str)
 {
 	write(2, str, *str ? ft_strlen(str) : 0);
+	write(1, "\n", 1);
 }

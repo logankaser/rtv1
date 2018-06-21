@@ -13,7 +13,7 @@
 #include "libft.h"
 
 t_list	*ft_lstfind(t_list *lst,
-		char (*pred)(const void *, const void *), const void *data)
+	t_bool (*pred)(const void *, const void *), const void *data)
 {
 	while (lst)
 	{

@@ -6,7 +6,7 @@
 /*   By: dhill <dhill@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/03 16:51:09 by dhill             #+#    #+#             */
-/*   Updated: 2018/02/03 16:52:34 by lkaser           ###   ########.fr       */
+/*   Updated: 2018/06/20 22:17:49 by lkaser           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,8 @@
 
 int			ft_iswhitespace(char c)
 {
-	if (c == ' ' || c == '\n' || c == '\t' || c == '\r' || c == '\v'
-			|| c == '\f')
-		return (1);
-	return (0);
+	return (c == ' ' || c == '\n' || c == '\t' 
+			|| c == '\r' || c == '\v' || c == '\f');
 }
 
 unsigned	ft_htou(const char *str)
@@ -28,7 +26,7 @@ unsigned	ft_htou(const char *str)
 	i = 0;
 	out = 0;
 	while (ft_iswhitespace(str[i]))
-		i++;
+		++i;
 	if (str[i] == '0' && str[i + 1] == 'x')
 	{
 		i += 2;
@@ -39,7 +37,7 @@ unsigned	ft_htou(const char *str)
 				out = out * 16 + str[i] - 'A' + 10;
 			else
 				out = out * 16 + str[i] - '0';
-			i++;
+			++i;
 		}
 		return (out);
 	}

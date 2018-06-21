@@ -6,7 +6,7 @@
 /*   By: dhill <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 22:14:37 by dhill             #+#    #+#             */
-/*   Updated: 2018/02/03 18:21:34 by dhill            ###   ########.fr       */
+/*   Updated: 2018/02/10 13:20:20 by lkaser           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,4 +80,5 @@ void	parse(char *file, t_rt *rt)
 			parse_object_list(split, rt);
 		ft_strdel(&line);
 	}
+	close(fd);
 }

@@ -6,7 +6,7 @@
 /*   By: lkaser <lkaser@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 16:13:37 by lkaser            #+#    #+#             */
-/*   Updated: 2018/02/06 20:49:10 by lkaser           ###   ########.fr       */
+/*   Updated: 2018/02/10 12:41:28 by lkaser           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,12 @@ double		shadow(t_vec3 hp, t_list *objs, t_light *light, t_vec3 normal)
 	{
 		shdw = FALSE;
 		dis = INFINITY;
-		MATCH(((t_obj*)objs->content)->type == t_sphere,
-			shdw = intersect_sphere(shadow_ray, objs->content, &dis));
-		OR(((t_obj*)objs->content)->type == t_cylinder,
-			shdw = intersect_cylinder(shadow_ray, objs->content, &dis));
-		OR(((t_obj*)objs->content)->type == t_cone,
-			shdw = intersect_cone(shadow_ray, objs->content, &dis));
+		if (((t_obj*)objs->content)->type == t_sphere)
+			shdw = intersect_sphere(shadow_ray, objs->content, &dis);
+		else if (((t_obj*)objs->content)->type == t_cylinder)
+			shdw = intersect_cylinder(shadow_ray, objs->content, &dis);
+		else if (((t_obj*)objs->content)->type == t_cone)
+			shdw = intersect_cone(shadow_ray, objs->content, &dis);
 		if (shdw && dis < light_dis && dis > 1e-6)
 			return (0);
 		objs = objs->next;
